@@ -1,0 +1,504 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>如何在服务器上搭建在线音乐播放器 | 天迹以蓝</title><meta name="keywords" content="宝塔建站,在线音乐"><meta name="author" content="天迹以蓝"><meta name="copyright" content="天迹以蓝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="搭建方法非常简单，把开源项目的压缩包下载下来，然后上传到服务器。必须上传到服务器才能使用，本地打开抓取不到歌曲，无法使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在服务器上搭建在线音乐播放器">
+<meta property="og:url" content="https://blog.yilanbk.com/posts/94fdd45d677c/index.html">
+<meta property="og:site_name" content="天迹以蓝">
+<meta property="og:description" content="搭建方法非常简单，把开源项目的压缩包下载下来，然后上传到服务器。必须上传到服务器才能使用，本地打开抓取不到歌曲，无法使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eeimg.yilan.uk/i/2023/05/09/jv3svr.webp">
+<meta property="article:published_time" content="2023-05-09T11:54:56.000Z">
+<meta property="article:modified_time" content="2023-05-12T11:54:56.000Z">
+<meta property="article:author" content="天迹以蓝">
+<meta property="article:tag" content="宝塔建站">
+<meta property="article:tag" content="在线音乐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eeimg.yilan.uk/i/2023/05/09/jv3svr.webp"><link rel="shortcut icon" href="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/tu_biao/site_ico.png"><link rel="canonical" href="https://blog.yilanbk.com/posts/94fdd45d677c/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GT-PH3F9WT"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-PH3F9WT');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '如何在服务器上搭建在线音乐播放器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-12 11:54:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@master/mainColor/heoMainColor.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ava.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" target="_blank" rel="noopener" href="https://nav.tjyll.com"><i class="fa-fw fas fa-location-arrow faa-tada"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fas fa-comment faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus faa-tada"></i><span> 随机文章</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">天迹以蓝</a></span><div id="he-plugin-simple"></div><div id="none_space"></div><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" target="_blank" rel="noopener" href="https://nav.tjyll.com"><i class="fa-fw fas fa-location-arrow faa-tada"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fas fa-comment faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus faa-tada"></i><span> 随机文章</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">如何在服务器上搭建在线音乐播放器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-09T11:54:56.000Z" title="发表于 2023-05-09 11:54:56">2023-05-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-12T11:54:56.000Z" title="更新于 2023-05-12 11:54:56">2023-05-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span></div></div></div><article class="post-content" id="article-container"><h1 id="个人成功搭建"><a href="#个人成功搭建" class="headerlink" title="个人成功搭建"></a>个人成功搭建</h1><h2 id="选择下面的开源项目"><a href="#选择下面的开源项目" class="headerlink" title="选择下面的开源项目"></a>选择下面的开源项目</h2><p><a target="_blank" rel="noopener" href="https://github.com/mxue12138/MKOnlineMusicPlayer">https://github.com/mxue12138/MKOnlineMusicPlayer</a></p>
+<p>搭建方法非常简单，把开源项目的压缩包下载下来，然后上传到服务器。必须上传到服务器才能使用，本地打开抓取不到歌曲，无法使用</p>
+<h3 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h3><p>php 5.4+, curl_exec, file_get_contents, json_decode, openssl_encrypt</p>
+<h3 id="必要配置"><a href="#必要配置" class="headerlink" title="必要配置"></a>必要配置</h3><ol>
+<li><p><strong>[清除缓存]</strong> 请务必添加以下代码到cron定时任务，并设置成每分钟执行一次，否则会导致用户歌单、歌曲列表、歌词等更新不及时，宝塔用户可以直接设置“计划任务”并选择“Shell脚本”</p>
+<p><code>find 你的网站绝对路径/cache/*.json -type f -cmin +30 -exec rm -fv &#123;&#125; \;</code></p>
+<p>如果是虚拟主机没办法添加Shell脚本的话，可以使用网站监控，监控“你的域名/api.php?types=cache”，监控时间推荐一分钟。</p>
+<p>如果以上都不行的话，可以直接关闭 api.php 内的缓存(关闭缓存可能会导致偶尔无法获取音乐)。</p>
+</li>
+<li><p><strong>[下载歌曲]</strong> 添加以下代码到你的网站配置文件，推荐添加到php引用之前，否则可能导致恶意php被执行(不添加会导致网站异常、歌曲无法下载等)</p>
+<p>apache：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;你的网站绝对路径/temp/&quot;&gt;</span><br><span class="line">    Header set Content-Type &quot;application/octet-stream&quot;</span><br><span class="line">    Header set Content-Disposition &quot;attachment;&quot;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p>nginx：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ~/temp/ &#123;</span><br><span class="line">    add_header Content-Type &quot;application/octet-stream&quot;;</span><br><span class="line">    add_header Content-Disposition &quot;attachment;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[跨域设置]</strong> 如果网站和接口不在一台服务器上，请将上面的代码添加到接口所在的服务器，并且还需要在接口所在的服务器的网站配置添加以下代码以解决跨域问题</p>
+<p>apache：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Header set Access-Control-Allow-Origin &quot;*&quot;</span><br><span class="line">Header set Access-Control-Allow-Headers &quot;X-Requested-With&quot;</span><br><span class="line">Header set Access-Control-Allow-Methods &quot;GET,POST,OPTIONS&quot;</span><br></pre></td></tr></table></figure>
+<p>nginx：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add_header Access-Control-Allow-Origin *;</span><br><span class="line">add_header Access-Control-Allow-Headers X-Requested-With;</span><br><span class="line">add_header Access-Control-Allow-Methods GET,POST,OPTIONS;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="个人搭建过程："><a href="#个人搭建过程：" class="headerlink" title="个人搭建过程："></a><strong>个人搭建过程：</strong></h2><p>php选择的7.0，这一串<code>curl_exec, file_get_contents, json_decode, openssl_encrypt</code>应该是php函数，在php7.0中没找到，所以没有设置</p>
+<h3 id="如何取消进站弹窗公告"><a href="#如何取消进站弹窗公告" class="headerlink" title="如何取消进站弹窗公告"></a><code>如何取消进站弹窗公告</code></h3><p>打开<code>js/player.js</code>,把placard设为false（代码都有注释，很容易修改）</p>
+<h3 id="如何启用下载功能"><a href="#如何启用下载功能" class="headerlink" title="如何启用下载功能"></a><code>如何启用下载功能</code></h3><p>按照上面给服务器添加网址配置代码，然后给网站申请ssl证书即可。</p>
+<h1 id="网上方法（未测试）"><a href="#网上方法（未测试）" class="headerlink" title="网上方法（未测试）"></a>网上方法（未测试）</h1><p>现在的音乐软件界面和布局越来越花哨，越来越偏向于社交，但是许多人真的只是想安安静静地欣赏一首音乐，不想看一堆广告和评论，而这就是自建在线音乐服务的意义，无人打扰，无广告，回归初心。</p>
+<p>另外，如果你没有自己的服务器也没有关系，直接使用现成搭好的就行</p>
+<p>mmPlayer 作者搭建的在线播放器Demo: <a target="_blank" rel="noopener" href="https://netease-music.fe-mm.com/">https://netease-music.fe-mm.com/</a></p>
+<p>我自己搭建的在线播放器服务: <a target="_blank" rel="noopener" href="https://music.hash070.top/">https://music.hash070.top/</a></p>
+<p>上面就是本次我们要搭建的在线播放器的示例，没有服务器或懒得自己搭建的小伙伴们把这个网站直接收藏使用就可以了，下面是服务器搭建流程（本教程基于宝塔面板 宝塔yyds）</p>
+<p>原创地址：<a target="_blank" rel="noopener" href="https://www.hash070.top/archives/online-music-player-setup.html">https://www.hash070.top/archives/online-music-player-setup.html</a></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="搭建在线音乐播放器所用到的服务"><a href="#搭建在线音乐播放器所用到的服务" class="headerlink" title="搭建在线音乐播放器所用到的服务"></a>搭建在线音乐播放器所用到的服务</h3><p>后端音乐服务接口NeteaseCloudMusicApi GitHub链接:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Binaryify/NeteaseCloudMusicApi</span><br></pre></td></tr></table></figure>
+<p>前端mmPlayer GitHub链接:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/maomao1996/Vue-mmPlayer</span><br></pre></td></tr></table></figure>
+<h2 id="搭建后端服务"><a href="#搭建后端服务" class="headerlink" title="搭建后端服务"></a>搭建后端服务</h2><ul>
+<li>将后端服务克隆下来并执行安装</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#我这边将这些文件放在了/www/wwwroot/文件夹下</span><br><span class="line"></span><br><span class="line">#进入/www/wwwroot/文件夹</span><br><span class="line">cd /www/wwwroot/</span><br><span class="line"></span><br><span class="line">#克隆音乐后端服务项目到该文件夹(如果由于网络原因下载失败，也可以直接点击上面的链接去github下载压缩包并解压上传到服务器)</span><br><span class="line">git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git</span><br><span class="line">#进入克隆下来目录</span><br><span class="line">cd NeteaseCloudMusicApi/</span><br><span class="line">#执行安装命令</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">#如果提示npm命令不存在，则您应当手动安装nodejs和npm</span><br><span class="line">#安装命令(CentOS)：</span><br><span class="line">yum install nodejs</span><br><span class="line">yum install npm</span><br><span class="line">#如果执行npm命令提示链接错误等信息，则您应当尝试卸载并重新安装nodejs和npm</span><br><span class="line">#卸载命令(CentOS)</span><br><span class="line">yum remove nodejs</span><br><span class="line">yum remove npm</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在宝塔面板的软件商店中下载PM2管理器</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab4520c2f8.webp" alt="img"></p>
+<ul>
+<li>进入PM2管理器小工具界面，填写信息</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab451d7afc.webp" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#启动文件填写</span><br><span class="line">/www/wwwroot/NeteaseCloudMusicApi/app.js</span><br><span class="line">#运行目录填写</span><br><span class="line">/www/wwwroot/NeteaseCloudMusicApi</span><br></pre></td></tr></table></figure>
+<ul>
+<li>填写完成后点击提交可以看到项目运行成功</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab45191275.webp" alt="img"></p>
+<p>至此，后端服务搭建成功。接下来进行构建和部署前端页面</p>
+<h2 id="构建和部署前端页面"><a href="#构建和部署前端页面" class="headerlink" title="构建和部署前端页面"></a>构建和部署前端页面</h2><ul>
+<li>将前端项目使用git clone命令或者自行下载并上传到服务器上</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#同样的,进入/www/wwwroot/文件夹</span><br><span class="line">cd /www/wwwroot/</span><br><span class="line">#克隆项目</span><br><span class="line">git clone https://github.com/maomao1996/Vue-mmPlayer.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入项目目录，安装依赖并打包</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#进入项目目录</span><br><span class="line">cd Vue-mmPlayer</span><br><span class="line">#安装依赖</span><br><span class="line">npm install</span><br><span class="line">#编译打包</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行编译打包命令之后，在该项目目录中会出现一个dict文件夹，里面就是生成的网站了</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab451d883b.webp" alt="img"></p>
+<ul>
+<li>这些文件先放着，去创建一个网站</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab451b06a6.webp" alt="img"></p>
+<ul>
+<li>如图所示，我用的是阿里云dns，选择添加域名解析，到服务器ip</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab451d4d56.webp" alt="img"></p>
+<ul>
+<li>等待解析生效，当访问域名时能够看到站点创建成功的页面后进行下一步操作</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab4525a9c3.webp" alt="img">站点创建成功页面</p>
+<ul>
+<li>将上面编译生成的dist目录下的全部文件，覆盖到该网站的根目录下，就算大功告成了</li>
+</ul>
+<p><img src="https://img.hash070.top/i/638ab452c7497.webp" alt="img"></p>
+<p><img src="https://img.hash070.top/i/638ab452ec615.webp" alt="img"></p>
+<p><img src="https://img.hash070.top/i/638ab452bf8ea.webp" alt="img">这里可以查看网站根目录</p>
+<p>至此在线音乐播放器基本就算是部署完成了，直接访问对应的域名就可以使用了。</p>
+<p>下面是进阶教程，就不写太详细了，建议有基础的继续看下去，教大家如何部署SSL证书，开启https访问。</p>
+<h2 id="为该网站部署SSL证书并开启HTTPS"><a href="#为该网站部署SSL证书并开启HTTPS" class="headerlink" title="为该网站部署SSL证书并开启HTTPS"></a>为该网站部署SSL证书并开启HTTPS</h2><h3 id="如果你没有或没听说过SSL证书，那么首先要去申请SSL证书"><a href="#如果你没有或没听说过SSL证书，那么首先要去申请SSL证书" class="headerlink" title="如果你没有或没听说过SSL证书，那么首先要去申请SSL证书"></a>如果你没有或没听说过SSL证书，那么首先要去申请SSL证书</h3><p>好消息是宝塔有傻瓜式的脚本来一键申请SSL证书，按着提示一步一步跟着做就行了，非常简单</p>
+<p>建议申请一个通配符证书，即所有的二级域名都能使用这个证书，省去很多麻烦</p>
+<p>至于更详细的API key怎么获得的我就暂时不写了，大致按着这个图配置就行</p>
+<p><img src="https://img.hash070.top/i/638ab452e77a1.webp" alt="img"></p>
+<h3 id="给后端接口套一个反向代理"><a href="#给后端接口套一个反向代理" class="headerlink" title="给后端接口套一个反向代理"></a>给后端接口套一个反向代理</h3><p>由于前端要开启Https，后端的接口也要开Https，否则会出错</p>
+<p>我的思路是创建一个站点并配置好SSL证书，专门用来代理后端音乐接口</p>
+<p>如下图所示</p>
+<p><img src="https://img.hash070.top/i/638ab4531c08b.webp" alt="img"></p>
+<h3 id="修改前端的接口配置文件并重新编译部署网站"><a href="#修改前端的接口配置文件并重新编译部署网站" class="headerlink" title="修改前端的接口配置文件并重新编译部署网站"></a>修改前端的接口配置文件并重新编译部署网站</h3><p>找到前端项目目录里面的vue.conf.js文件，将接口地址改为上面的网站地址</p>
+<p><img src="https://img.hash070.top/i/638ab453406ec.webp" alt="img"></p>
+<p>然后重新执行一遍编译操作，把文件复制黏贴到播放器网站的根目录即可</p>
+<p><img src="https://img.hash070.top/i/638ab453406ec.webp" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#编译命令(在vue-netease-music目录下执行)</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<h2 id="还有一点点小问题"><a href="#还有一点点小问题" class="headerlink" title="还有一点点小问题"></a>还有一点点小问题</h2><p>当这个播放器的网页失去焦点时，标题会变成一个令人感到不适的句子，我知道这里作者只是想开个玩笑，但这个地方确实不太好</p>
+<p>网页失去焦点后的标题</p>
+<p>网页得到焦点时的标题，可以看出作者并没有主观上的恶意</p>
+<p>所以就想着手动修改一下这个地方</p>
+<p>思路，首先控制这个的一定是一个JavaScript脚本，使用Linux系统的Find命令，查找该网站目录下以js为后缀名，内容中含有关键词“死鬼”的文件，命令如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /www/wwwroot/music.hash070.top -name &quot;*.js&quot; | xargs grep &quot;死鬼&quot;</span><br></pre></td></tr></table></figure>
+<p>执行完后，命令行会返回文件的名称和包含该关键词的行</p>
+<p>相关的文件在网站的js目录下的app.7b9843e2.js里面</p>
+<p>进入文件再使用查找替换，换成自己想要的词就行了</p>
+<p><img src="https://img.hash070.top/i/638ab453dd7e4.webp" alt="img"></p>
+<p>好的，教程至此结束，祝大家用的愉快</p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>如何在服务器上搭建在线音乐播放器</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://blog.yilanbk.com/posts/94fdd45d677c/">https://blog.yilanbk.com/posts/94fdd45d677c/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>天迹以蓝</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-05-09</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-05-12</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9D%E5%A1%94%E5%BB%BA%E7%AB%99/">宝塔建站</a><a class="post-meta__tags" href="/tags/%E5%9C%A8%E7%BA%BF%E9%9F%B3%E4%B9%90/">在线音乐</a></div><div class="post_share"><div class="social-share" data-image="https://eeimg.yilan.uk/i/2023/05/09/jv3svr.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/de76ac3ec4d0/"><img class="prev-cover" src="https://eeimg.yilan.uk/i/2023/05/12/nswegp.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">一些实用的BAT代码</div></div></a></div><div class="next-post pull-right"><a href="/posts/f8e49b585163/"><img class="next-cover" src="https://eeimg.yilan.uk/i/2023/04/25/udbrq7-1.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">中国地图矢量图下载：省地图、市级地图、区级地图矢量图</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/67cf2b4e91d2/" title="PTCMS 4.3.0小说系统搭建教程"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/ptcms.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-16</div><div class="title">PTCMS 4.3.0小说系统搭建教程</div></div></a></div><div><a href="/posts/736cec8b7c33/" title="使用苹果cms和海螺模板搭建属于自己的影视网站"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/01/06/ow44u0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-06</div><div class="title">使用苹果cms和海螺模板搭建属于自己的影视网站</div></div></a></div><div><a href="/posts/d46b8a39fe95/" title="如何查看phpMyAdmin的用户名和密码"><img class="cover" src="https://eeimg.yilan.uk/i/2023/05/20/xrak04.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-20</div><div class="title">如何查看phpMyAdmin的用户名和密码</div></div></a></div><div><a href="/posts/447147213a56/" title="搭建一个自动发卡站--独角数卡"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/03/21/u6mbxr.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-20</div><div class="title">搭建一个自动发卡站--独角数卡</div></div></a></div><div><a href="/posts/65b10b9bd2fb/" title="独角数卡常见问题及后台配置"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/03/21/u6mbxr.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-22</div><div class="title">独角数卡常见问题及后台配置</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ava.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">天迹以蓝</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.yilan.uk"><i class="fab fa-github"></i><span>YiLan's Blog</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DEKVIW" target="_blank" title="Github"><i class="iconfont icon-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/zhi-xiao-tian-xia-shi-16" target="_blank" title="知乎"><i class="iconfont icon-matuwang-zhihufangxingdianji"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzg5Njg3NTAxMA==&amp;scene=124#wechat_redirect" target="_blank" title="公众号"><i class="iconfont icon-weixingongzhonghaoguanli"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E6%88%90%E5%8A%9F%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">个人成功搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">选择下面的开源项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%85%E8%A6%81%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">必要配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">个人搭建过程：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%96%E6%B6%88%E8%BF%9B%E7%AB%99%E5%BC%B9%E7%AA%97%E5%85%AC%E5%91%8A"><span class="toc-number">1.2.1.</span> <span class="toc-text">如何取消进站弹窗公告</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%90%AF%E7%94%A8%E4%B8%8B%E8%BD%BD%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text">如何启用下载功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E4%B8%8A%E6%96%B9%E6%B3%95%EF%BC%88%E6%9C%AA%E6%B5%8B%E8%AF%95%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">网上方法（未测试）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E5%9C%A8%E7%BA%BF%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E6%89%80%E7%94%A8%E5%88%B0%E7%9A%84%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.1.1.</span> <span class="toc-text">搭建在线音乐播放器所用到的服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.2.</span> <span class="toc-text">搭建后端服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%92%8C%E9%83%A8%E7%BD%B2%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">构建和部署前端页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E8%AF%A5%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2SSL%E8%AF%81%E4%B9%A6%E5%B9%B6%E5%BC%80%E5%90%AFHTTPS"><span class="toc-number">2.4.</span> <span class="toc-text">为该网站部署SSL证书并开启HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%B2%A1%E6%9C%89%E6%88%96%E6%B2%A1%E5%90%AC%E8%AF%B4%E8%BF%87SSL%E8%AF%81%E4%B9%A6%EF%BC%8C%E9%82%A3%E4%B9%88%E9%A6%96%E5%85%88%E8%A6%81%E5%8E%BB%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6"><span class="toc-number">2.4.1.</span> <span class="toc-text">如果你没有或没听说过SSL证书，那么首先要去申请SSL证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E5%A5%97%E4%B8%80%E4%B8%AA%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">2.4.2.</span> <span class="toc-text">给后端接口套一个反向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%89%8D%E7%AB%AF%E7%9A%84%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B9%B6%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2%E7%BD%91%E7%AB%99"><span class="toc-number">2.4.3.</span> <span class="toc-text">修改前端的接口配置文件并重新编译部署网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%98%E6%9C%89%E4%B8%80%E7%82%B9%E7%82%B9%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">2.5.</span> <span class="toc-text">还有一点点小问题</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/140c784b84dc/" title="使用jellyfin和ttm在Windows系统上搭建本地私人影院"><img src="https://eeimg.yilan.uk/i/2023/12/24/kkl3v.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用jellyfin和ttm在Windows系统上搭建本地私人影院"/></a><div class="content"><a class="title" href="/posts/140c784b84dc/" title="使用jellyfin和ttm在Windows系统上搭建本地私人影院">使用jellyfin和ttm在Windows系统上搭建本地私人影院</a><time datetime="2023-12-24T09:19:34.000Z" title="发表于 2023-12-24 09:19:34">2023-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/0c76914a03fc/" title="docker相关问题汇总"><img src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/10/vps.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker相关问题汇总"/></a><div class="content"><a class="title" href="/posts/0c76914a03fc/" title="docker相关问题汇总">docker相关问题汇总</a><time datetime="2023-11-27T11:54:56.000Z" title="发表于 2023-11-27 11:54:56">2023-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/01b4e1a9a784/" title="n3540安装苹果cms"><img src="https://eeimg.yilan.uk/i/2024/01/21/o0j4vo.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="n3540安装苹果cms"/></a><div class="content"><a class="title" href="/posts/01b4e1a9a784/" title="n3540安装苹果cms">n3540安装苹果cms</a><time datetime="2023-11-12T17:19:26.000Z" title="发表于 2023-11-12 17:19:26">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/54b0ad4ac6f9/" title="玩客云折腾记后续之安装bt下载器并做内网穿透"><img src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2022/12/10/sm5wir-3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="玩客云折腾记后续之安装bt下载器并做内网穿透"/></a><div class="content"><a class="title" href="/posts/54b0ad4ac6f9/" title="玩客云折腾记后续之安装bt下载器并做内网穿透">玩客云折腾记后续之安装bt下载器并做内网穿透</a><time datetime="2023-11-12T17:19:26.000Z" title="发表于 2023-11-12 17:19:26">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/968893776821/" title="解决缺少.dill 组件无法运行程序"><img src="/img/cover/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决缺少.dill 组件无法运行程序"/></a><div class="content"><a class="title" href="/posts/968893776821/" title="解决缺少.dill 组件无法运行程序">解决缺少.dill 组件无法运行程序</a><time datetime="2023-11-11T09:19:34.000Z" title="发表于 2023-11-11 09:19:34">2023-11-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0a165e"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 天迹以蓝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.yilanbk.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.yilanbk.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.yilanbk.com/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async src="/js/diytitle.js"></script><script async src="/js/footertime.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script async src="/js/weather.js"></script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script async src="//at.alicdn.com/t/c/font_3576756_og09585ciq.js"></script><script defer src="/js/footertime.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script defer src="/zhheo/random.js"></script><script src="/js/wp.js"></script><script defer src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'GT-PH3F9WT', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

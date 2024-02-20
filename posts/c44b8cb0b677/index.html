@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>chatgpt写代码实例 | 天迹以蓝</title><meta name="keywords" content="AI"><meta name="author" content="天迹以蓝"><meta name="copyright" content="天迹以蓝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="持续更新chatgpt写出地实用代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chatgpt写代码实例">
+<meta property="og:url" content="https://blog.yilanbk.com/posts/c44b8cb0b677/index.html">
+<meta property="og:site_name" content="天迹以蓝">
+<meta property="og:description" content="持续更新chatgpt写出地实用代码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eeimg.yilan.uk/i/2023/09/07/10uqnk1.webp">
+<meta property="article:published_time" content="2023-09-07T09:19:34.000Z">
+<meta property="article:modified_time" content="2023-11-05T09:19:34.000Z">
+<meta property="article:author" content="天迹以蓝">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eeimg.yilan.uk/i/2023/09/07/10uqnk1.webp"><link rel="shortcut icon" href="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/tu_biao/site_ico.png"><link rel="canonical" href="https://blog.yilanbk.com/posts/c44b8cb0b677/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GT-PH3F9WT"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-PH3F9WT');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'chatgpt写代码实例',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-05 09:19:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@master/mainColor/heoMainColor.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ava.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" target="_blank" rel="noopener" href="https://nav.tjyll.com"><i class="fa-fw fas fa-location-arrow faa-tada"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fas fa-comment faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus faa-tada"></i><span> 随机文章</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">天迹以蓝</a></span><div id="he-plugin-simple"></div><div id="none_space"></div><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" target="_blank" rel="noopener" href="https://nav.tjyll.com"><i class="fa-fw fas fa-location-arrow faa-tada"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fas fa-comment faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus faa-tada"></i><span> 随机文章</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">chatgpt写代码实例</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-07T09:19:34.000Z" title="发表于 2023-09-07 09:19:34">2023-09-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-05T09:19:34.000Z" title="更新于 2023-11-05 09:19:34">2023-11-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="实例1"><a href="#实例1" class="headerlink" title="实例1"></a>实例1</h2><h3 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h3><p>我写文章使用的是支持markdown语法的typora，这款工具方便写博客文章，最主要的是写完后可以通过mdnice转换节省不同平台排版的时间从而实现一篇文章快速投送多个平台，比如知乎，百家号，公众号等。但是一直以来我在把文章上传到公众号平台时，文章中的图片总是上传失败（原因就是我的文章中图片的图床与公众号连接的线路不好，在从我的图床上传图片到公众号时，对超过一定时间还没有上传成功的图片就会直接上传失败）。</p>
+<p><img src="https://eeimg.yilan.uk/i/2023/09/07/zi0jdr.webp" alt="插入失败"></p>
+<p>如上图，一共有29张图片其中28张图片插入失败。所以，我需要手动回到typora文件逐个把图片下载下来并且以阿拉伯数字从小到大排序，再按照顺序粘贴到公众号的对应位置。28张图片一个一个右键下载再重命名的话至少需要七八分钟，而且这种无聊重复的操作也会出错，可能一不小心就重复下载又或者命名错误又或者少下载了。由于懒就想到把重复无聊的操作交给程序来执行，而我又不会写程序，但是chagpt会写啊，把需求给它尝试看看，没想到成功了。</p>
+<h3 id="部分提问截图"><a href="#部分提问截图" class="headerlink" title="部分提问截图"></a>部分提问截图</h3><p><img src="https://eeimg.yilan.uk/i/2023/09/07/10dzpsw.webp" alt="代码不会我来写"></p>
+<p><img src="https://eeimg.yilan.uk/i/2023/09/07/10i3umf.webp" alt="不会用代码也可以问"></p>
+<p>补充一句：使用chatgpt提问时，要把它当作一个人来交流，要把自己的需求表达的完善充足，它回答的对要给予它肯定，错误也要指出，这样不断地训练它纠正它，它给出的答案就越准确。使用chatgpt的一个误区就是把它当成普通的搜索引擎使用！！</p>
+<h3 id="需求（我的提问）"><a href="#需求（我的提问）" class="headerlink" title="需求（我的提问）"></a>需求（我的提问）</h3><p>我有一个typora文件，文件里面有图片链接，我想把文件里面的图片依次下载下来并且以阿拉伯数字从小到大命名</p>
+<h3 id="chatgpt回答"><a href="#chatgpt回答" class="headerlink" title="chatgpt回答"></a>chatgpt回答</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取Typora文件的内容</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;your_typora_file.md&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    content = file.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用正则表达式找到所有图片链接</span></span><br><span class="line">img_links = re.findall(<span class="string">r&#x27;!\[.*?\]\((.*?)\)&#x27;</span>, content)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个目录来保存下载的图片</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&#x27;downloaded_images&#x27;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&#x27;downloaded_images&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载并重命名图片</span></span><br><span class="line"><span class="keyword">for</span> i, img_link <span class="keyword">in</span> <span class="built_in">enumerate</span>(img_links):</span><br><span class="line">    response = requests.get(img_link)</span><br><span class="line">    <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">        <span class="comment"># 提取文件扩展名</span></span><br><span class="line">        file_extension = os.path.splitext(img_link)[-<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># 构建新的文件名</span></span><br><span class="line">        new_filename = <span class="string">f&#x27;downloaded_images/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span><span class="subst">&#123;file_extension&#125;</span>&#x27;</span></span><br><span class="line">        <span class="comment"># 保存图片</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(new_filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> img_file:</span><br><span class="line">            img_file.write(response.content)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Downloaded: <span class="subst">&#123;new_filename&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Failed to download: <span class="subst">&#123;img_link&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;图片下载完成。&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，请将 <code>&#39;your_typora_file.md&#39;</code> 替换为您的Typora文件的实际路径。脚本会将下载的图片保存在一个名为 <code>downloaded_images</code> 的文件夹中，并以阿拉伯数字从小到大命名。</p>
+<p>请注意，这只是一个简单的示例，您可能需要根据您的具体需求进行调整。此外，确保您已安装所需的Python库，可以使用以下命令安装：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
+<p>您可以使用上面提供的Python代码来下载Typora文件中的图片。以下是如何使用这个Python脚本的步骤：</p>
+<ol>
+<li><p>复制上面的Python代码并粘贴到一个文本编辑器中（如Notepad++或Visual Studio Code）。</p>
+</li>
+<li><p>保存脚本文件并确保文件扩展名为<code>.py</code>（例如<code>download_typora_images.py</code>）。</p>
+</li>
+<li><p>打开命令行终端（例如cmd或终端）。</p>
+</li>
+<li><p>在终端中，导航到包含脚本文件的目录，使用<code>cd</code>命令切换到该目录，例如：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /<span class="built_in">path</span>/to/script/directory</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行脚本，使用以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python download_typora_images.py</span><br></pre></td></tr></table></figure>
+<p>确保您已安装了Python，并且<code>python</code>命令可以在命令行中正常运行。</p>
+</li>
+<li><p>脚本将开始执行，根据Typora文件中的图片链接下载图片，并将它们以阿拉伯数字从小到大命名，保存在名为<code>downloaded_images</code>的文件夹中。</p>
+</li>
+</ol>
+<p>请注意，脚本执行完成后，您将在脚本文件的目录中看到一个名为<code>downloaded_images</code>的文件夹，其中包含下载的图片。确保在运行脚本之前备份Typora文件，以防万一。</p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://eeimg.yilan.uk/i/2023/09/07/10rvgbt.webp" alt="cmd运行过程"></p>
+<p><img src="https://eeimg.yilan.uk/i/2023/09/07/10ssnbf.webp" alt="完成结果"></p>
+<h3 id="窗口选择typora文件，无需修改代码中typora文件路径"><a href="#窗口选择typora文件，无需修改代码中typora文件路径" class="headerlink" title="窗口选择typora文件，无需修改代码中typora文件路径"></a>窗口选择typora文件，无需修改代码中typora文件路径</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">import</span> <span class="string">os</span></span><br><span class="line"><span class="string">import</span> <span class="string">re</span></span><br><span class="line"><span class="string">import</span> <span class="string">requests</span></span><br><span class="line"><span class="string">from</span> <span class="string">tkinter</span> <span class="string">import</span> <span class="string">filedialog</span></span><br><span class="line"><span class="string">import</span> <span class="string">tkinter</span> <span class="string">as</span> <span class="string">tk</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Tkinter window</span></span><br><span class="line"><span class="string">root</span> <span class="string">=</span> <span class="string">tk.Tk()</span></span><br><span class="line"><span class="string">root.withdraw()</span>  <span class="comment"># Hide the main window</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ask the user to select a Typora file</span></span><br><span class="line"><span class="string">typora_file_path</span> <span class="string">=</span> <span class="string">filedialog.askopenfilename(title=&quot;Select</span> <span class="string">Typora</span> <span class="string">File&quot;,</span> <span class="string">filetypes=[(&quot;Markdown</span> <span class="string">files&quot;,</span> <span class="string">&quot;*.md&quot;</span><span class="string">)])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Check if a file was selected</span></span><br><span class="line"><span class="attr">if not typora_file_path:</span></span><br><span class="line">    <span class="string">print(&quot;No</span> <span class="string">file</span> <span class="string">selected.</span> <span class="string">Exiting...&quot;)</span></span><br><span class="line">    <span class="string">exit()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the content of the selected Typora file</span></span><br><span class="line"><span class="string">with</span> <span class="string">open(typora_file_path,</span> <span class="string">&#x27;r&#x27;</span><span class="string">,</span> <span class="string">encoding=&#x27;utf-8&#x27;)</span> <span class="attr">as file:</span></span><br><span class="line">    <span class="string">content</span> <span class="string">=</span> <span class="string">file.read()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use regular expression to find all image links</span></span><br><span class="line"><span class="string">img_links</span> <span class="string">=</span> <span class="string">re.findall(r&#x27;!\[.*?\]\((.*?)\)&#x27;,</span> <span class="string">content)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a directory to save downloaded images</span></span><br><span class="line"><span class="string">if</span> <span class="string">not</span> <span class="string">os.path.exists(&#x27;downloaded_images&#x27;):</span></span><br><span class="line">    <span class="string">os.mkdir(&#x27;downloaded_images&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Download and rename images</span></span><br><span class="line"><span class="string">for</span> <span class="string">i,</span> <span class="string">img_link</span> <span class="string">in</span> <span class="string">enumerate(img_links):</span></span><br><span class="line">    <span class="string">response</span> <span class="string">=</span> <span class="string">requests.get(img_link)</span></span><br><span class="line">    <span class="string">if</span> <span class="string">response.status_code</span> <span class="string">==</span> <span class="attr">200:</span></span><br><span class="line">        <span class="comment"># Extract file extension</span></span><br><span class="line">        <span class="string">file_extension</span> <span class="string">=</span> <span class="string">os.path.splitext(img_link)[-1]</span></span><br><span class="line">        <span class="comment"># Build a new filename</span></span><br><span class="line">        <span class="string">new_filename</span> <span class="string">=</span> <span class="string">f&#x27;downloaded_images/&#123;i</span> <span class="string">+</span> <span class="number">1</span><span class="string">&#125;&#123;file_extension&#125;&#x27;</span></span><br><span class="line">        <span class="comment"># Save the image</span></span><br><span class="line">        <span class="string">with</span> <span class="string">open(new_filename,</span> <span class="string">&#x27;wb&#x27;</span><span class="string">)</span> <span class="attr">as img_file:</span></span><br><span class="line">            <span class="string">img_file.write(response.content)</span></span><br><span class="line">        <span class="string">print(f&#x27;Downloaded:</span> &#123;<span class="string">new_filename</span>&#125;<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">    else:</span></span><br><span class="line"><span class="string">        print(f&#x27;</span><span class="attr">Failed to download:</span> &#123;<span class="string">img_link</span>&#125;<span class="string">&#x27;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">print(&#x27;</span><span class="string">Image</span> <span class="string">download</span> <span class="string">completed.&#x27;)</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>chatgpt写代码实例</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://blog.yilanbk.com/posts/c44b8cb0b677/">https://blog.yilanbk.com/posts/c44b8cb0b677/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>天迹以蓝</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-09-07</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-11-05</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a></div><div class="post_share"><div class="social-share" data-image="https://eeimg.yilan.uk/i/2023/09/07/10uqnk1.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/eadd8502577b/"><img class="prev-cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/10/hexo.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">使用docker将hexo博客从github迁移到服务器</div></div></a></div><div class="next-post pull-right"><a href="/posts/43dc9481ae68/"><img class="next-cover" src="https://eeimg.yilan.uk/i/2023/08/25/zodnq3.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">申请AWS一年免费服务器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/dce8f0a60eb5/" title="AI图像处理工具箱"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/04/k5d54x.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-04</div><div class="title">AI图像处理工具箱</div></div></a></div><div><a href="/posts/fac7147dfc6e/" title="AI绘图神器——Stable Diffusion web UI"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/03/02/sz4vza.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-07</div><div class="title">AI绘图神器——Stable Diffusion web UI</div></div></a></div><div><a href="/posts/983a7a3a1d1b/" title="AI神器！图片上色、ChtaGpt"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/03/08/w08sov.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-08</div><div class="title">AI神器！图片上色、ChtaGpt</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ava.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">天迹以蓝</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.yilan.uk"><i class="fab fa-github"></i><span>YiLan's Blog</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DEKVIW" target="_blank" title="Github"><i class="iconfont icon-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/zhi-xiao-tian-xia-shi-16" target="_blank" title="知乎"><i class="iconfont icon-matuwang-zhihufangxingdianji"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzg5Njg3NTAxMA==&amp;scene=124#wechat_redirect" target="_blank" title="公众号"><i class="iconfont icon-weixingongzhonghaoguanli"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B1"><span class="toc-number">1.</span> <span class="toc-text">实例1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">需求背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E6%8F%90%E9%97%AE%E6%88%AA%E5%9B%BE"><span class="toc-number">1.2.</span> <span class="toc-text">部分提问截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%88%E6%88%91%E7%9A%84%E6%8F%90%E9%97%AE%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">需求（我的提问）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chatgpt%E5%9B%9E%E7%AD%94"><span class="toc-number">1.4.</span> <span class="toc-text">chatgpt回答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">1.5.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E9%80%89%E6%8B%A9typora%E6%96%87%E4%BB%B6%EF%BC%8C%E6%97%A0%E9%9C%80%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E4%B8%ADtypora%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="toc-number">1.6.</span> <span class="toc-text">窗口选择typora文件，无需修改代码中typora文件路径</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/140c784b84dc/" title="使用jellyfin和ttm在Windows系统上搭建本地私人影院"><img src="https://eeimg.yilan.uk/i/2023/12/24/kkl3v.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用jellyfin和ttm在Windows系统上搭建本地私人影院"/></a><div class="content"><a class="title" href="/posts/140c784b84dc/" title="使用jellyfin和ttm在Windows系统上搭建本地私人影院">使用jellyfin和ttm在Windows系统上搭建本地私人影院</a><time datetime="2023-12-24T09:19:34.000Z" title="发表于 2023-12-24 09:19:34">2023-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/0c76914a03fc/" title="docker相关问题汇总"><img src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/10/vps.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker相关问题汇总"/></a><div class="content"><a class="title" href="/posts/0c76914a03fc/" title="docker相关问题汇总">docker相关问题汇总</a><time datetime="2023-11-27T11:54:56.000Z" title="发表于 2023-11-27 11:54:56">2023-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/01b4e1a9a784/" title="n3540安装苹果cms"><img src="https://eeimg.yilan.uk/i/2024/01/21/o0j4vo.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="n3540安装苹果cms"/></a><div class="content"><a class="title" href="/posts/01b4e1a9a784/" title="n3540安装苹果cms">n3540安装苹果cms</a><time datetime="2023-11-12T17:19:26.000Z" title="发表于 2023-11-12 17:19:26">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/54b0ad4ac6f9/" title="玩客云折腾记后续之安装bt下载器并做内网穿透"><img src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2022/12/10/sm5wir-3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="玩客云折腾记后续之安装bt下载器并做内网穿透"/></a><div class="content"><a class="title" href="/posts/54b0ad4ac6f9/" title="玩客云折腾记后续之安装bt下载器并做内网穿透">玩客云折腾记后续之安装bt下载器并做内网穿透</a><time datetime="2023-11-12T17:19:26.000Z" title="发表于 2023-11-12 17:19:26">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/968893776821/" title="解决缺少.dill 组件无法运行程序"><img src="/img/cover/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决缺少.dill 组件无法运行程序"/></a><div class="content"><a class="title" href="/posts/968893776821/" title="解决缺少.dill 组件无法运行程序">解决缺少.dill 组件无法运行程序</a><time datetime="2023-11-11T09:19:34.000Z" title="发表于 2023-11-11 09:19:34">2023-11-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0a165e"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 天迹以蓝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.yilanbk.com/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.yilanbk.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.yilanbk.com/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async src="/js/diytitle.js"></script><script async src="/js/footertime.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script async src="/js/weather.js"></script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script async src="//at.alicdn.com/t/c/font_3576756_og09585ciq.js"></script><script defer src="/js/footertime.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script defer src="/zhheo/random.js"></script><script src="/js/wp.js"></script><script defer src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'GT-PH3F9WT', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
