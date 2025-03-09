@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>VPS常用脚本 | 以蓝博客</title><meta name="keywords" content="脚本,linux"><meta name="author" content="以蓝"><meta name="copyright" content="以蓝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="玩vps的过程中，为了省事，经常会用到一些脚本，这边整理的就是常用的一些脚本。持续更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VPS常用脚本">
+<meta property="og:url" content="https://ylbolg.top/posts/9a72d9db638d/index.html">
+<meta property="og:site_name" content="以蓝博客">
+<meta property="og:description" content="玩vps的过程中，为了省事，经常会用到一些脚本，这边整理的就是常用的一些脚本。持续更新">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/10/vps.webp">
+<meta property="article:published_time" content="2022-09-19T11:54:56.000Z">
+<meta property="article:modified_time" content="2023-11-14T11:54:56.000Z">
+<meta property="article:author" content="以蓝">
+<meta property="article:tag" content="脚本">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/10/vps.webp"><link rel="shortcut icon" href="/img/fav1.png"><link rel="canonical" href="https://ylbolg.top/posts/9a72d9db638d/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.1.1/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GT-PH3F9WT"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-PH3F9WT');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'VPS常用脚本',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-14 11:54:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/img/fontawesome-free/css/all.min.css"><!-- 左侧灯笼组--><div class="deng-box-left"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">新</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-left1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">年</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- 右侧灯笼组--><div class="deng-box-right"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">快</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-right1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">乐</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="centered"><div class="blob-1"></div><div class="blob-2"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ava.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">88</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilan.uk/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://uptime.yilancn.top/status/1/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">以蓝博客</a></span><div id="he-plugin-simple"></div><div id="none_space"></div><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilan.uk/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://uptime.yilancn.top/status/1/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout hide-aside" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">VPS常用脚本</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-19T11:54:56.000Z" title="发表于 2022-09-19 11:54:56">2022-09-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-14T11:54:56.000Z" title="更新于 2023-11-14 11:54:56">2023-11-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/VPS/">VPS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span></div></div></div><article class="post-content" id="article-container"><div class="note success simple"><p>玩vps的过程中，为了省事，经常会用到一些脚本，这边整理的就是常用的一些脚本。持续更新！</p>
+</div>
+<h2 id="流媒体测试脚本"><a href="#流媒体测试脚本" class="headerlink" title="流媒体测试脚本"></a>流媒体测试脚本</h2><p><code>流媒体1</code></p>
+<p>github项目地址 <a target="_blank" rel="noopener" href="https://github.com/lmc999/RegionRestrictionCheck">https://github.com/lmc999/RegionRestrictionCheck </a></p>
+<p>脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -L -s https://git.io/JRw8R)</span><br></pre></td></tr></table></figure>
+<p>或者这个：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -L -s check.unlock.media)</span><br></pre></td></tr></table></figure>
+<p>运行的时候会让你选择需要测流媒体的地区，其实选哪里都能测奈飞和迪士尼等等，选不同的地区会测一些该地区独有的流媒体。支持ipv4+ipv6测试。</p>
+<p><code>tiktok解锁测试脚本：</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsL -o ./t.sh.x https://github.com/lmc999/TikTokCheck/raw/main/t.sh.x &amp;&amp; <span class="built_in">chmod</span> +x ./t.sh.x &amp;&amp; ./t.sh.x &amp;&amp; <span class="built_in">rm</span> ./t.sh.x</span><br></pre></td></tr></table></figure>
+<p><code>另一个流媒体测试脚本</code></p>
+<p>这个脚本作者不经常更新，不如上一个脚本更新比较快，这个脚本不会让你选择地区，它会把所有地区流媒体都测一遍，有的时候上面那个脚本显示奈飞解锁，这个脚本会显示奈飞只有自制剧，这个需要自己测试了。也是支持ipv4+ipv6测试。</p>
+<p>github项目地址：<a target="_blank" rel="noopener" href="https://github.com/LovelyHaochi/StreamUnlockTest">https://github.com/LovelyHaochi/StreamUnlockTest</a></p>
+<h2 id="解锁奈飞"><a href="#解锁奈飞" class="headerlink" title="解锁奈飞"></a>解锁奈飞</h2><ul>
+<li>判断vps是否解锁奈飞，<a target="_blank" rel="noopener" href="https://github.com/sjlleo/netflix-verify">项目地址</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O nf https://github.com/sjlleo/netflix-verify/releases/download/v3.1.0/nf_linux_amd64 &amp;&amp; <span class="built_in">chmod</span> +x nf &amp;&amp; ./nf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Warp解锁奈飞，<a target="_blank" rel="noopener" href="https://github.com/fscarmen/warp">项目地址</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh &amp;&amp; bash menu.sh [option] [lisence]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>奈飞解锁方式大全（源自不良林）</li>
+</ul>
+<p>博客地址：<a target="_blank" rel="noopener" href="https://bulianglin.com/archives/netflix-unlock.html">链接</a></p>
+<h2 id="启用BBR"><a href="#启用BBR" class="headerlink" title="启用BBR"></a>启用BBR</h2><ul>
+<li>查询当前使用的TCP拥塞控制算法</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询当前Liux版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">uname</span> -r</span><br></pre></td></tr></table></figure>
+<h3 id="linux内核大于4-9"><a href="#linux内核大于4-9" class="headerlink" title="linux内核大于4.9"></a>linux内核大于4.9</h3><ul>
+<li>一键启用BBR TCP拥塞控制算法（linux版本&gt;4.9)，逐条复制，最后一条命令用来检测当前的tcp拥塞算法</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;net.core.default_qdisc=fq&quot;</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;net.ipv4.tcp_congestion_control=bbr&quot;</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<p><img src="https://eeimg.ylbolg.top/i/2023/05/19/x2xnpw.webp" alt="启用成功"></p>
+<h3 id="升级debian系统内核"><a href="#升级debian系统内核" class="headerlink" title="升级debian系统内核"></a>升级debian系统内核</h3><h4 id="添加源"><a href="#添加源" class="headerlink" title="添加源"></a>添加源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://deb.debian.org/debian buster-backports main&quot;</span> &gt; /etc/apt/sources.list.d/backports.list</span><br></pre></td></tr></table></figure>
+<h4 id="安装最新内核和头文件"><a href="#安装最新内核和头文件" class="headerlink" title="安装最新内核和头文件"></a>安装最新内核和头文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt -t buster-backports install linux-image-amd64</span><br><span class="line">apt -t buster-backports install linux-headers-amd64</span><br><span class="line">update-grub</span><br></pre></td></tr></table></figure>
+<p>重新启动服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now</span><br></pre></td></tr></table></figure>
+<h4 id="卸载旧内核"><a href="#卸载旧内核" class="headerlink" title="卸载旧内核"></a>卸载旧内核</h4><p>请确保使用中的内核不要卸载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dpkg --list | grep linux-image</span><br><span class="line"><span class="comment"># 卸载指定的旧内核</span></span><br><span class="line">apt purge linux-image-*.**.*-**-cloud-amd64</span><br></pre></td></tr></table></figure>
+<p>命令 <code>dpkg --list | grep linux-image</code>用于列出基于Debian的系统上已安装的Linux内核镜像。下面是对该命令各部分的解释：</p>
+<p><code>dpkg</code>： 它是一个命令行软件包管理工具，在基于Debian的系统中使用，包括Ubuntu。<br><code>--list</code>： 这个选项用来列出已安装的软件包。<br><code>|</code>: 它是一个管道符号，将前一个命令的输出重定向到下一个命令。<br><code>grep</code>： 这是一个用于模式匹配和搜索文本的命令。<br><code>linux-image</code>： 这是我们在已安装软件包的列表中寻找的搜索模式或关键词。<br>当你运行 <code>dpkg --list | grep linux-image</code>命令时，它将显示一个包含<code>linux-image</code>短语的已安装软件包的过滤列表。在这种情况下，它可能会显示你系统上已安装的Linux内核镜像包。这些软件包负责提供操作系统的核心功能。</p>
+<h4 id="删除旧头文件"><a href="#删除旧头文件" class="headerlink" title="删除旧头文件"></a>删除旧头文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dpkg --list | grep linux-headers</span><br><span class="line">apt purge linux-headers-*.**.*-**-cloud-amd64</span><br></pre></td></tr></table></figure>
+<p>命令 <code>dpkg --list | grep linux-headers</code>用于列出基于Debian的系统上已安装的Linux头文件包。下面是对该命令各部分的解释：</p>
+<p><code>dpkg</code>： 它是一个命令行软件包管理工具，在基于Debian的系统中使用，包括Ubuntu。<br><code>--list</code>： 这个选项用来列出已安装的软件包。<br><code>|</code>: 它是一个管道符号，将前一个命令的输出重定向到下一个命令。<br><code>grep</code>： 这是一个用于模式匹配和搜索文本的命令。<br><code>linux-headers</code>： 这是我们在已安装软件包的列表中寻找的搜索模式或关键词。<br>当你运行<code>dpkg --list | grep linux-headers</code>命令时，它将显示一个包含<code>inux-headers</code>短语的已安装软件包的过滤列表。Linux头文件包包括构建外部内核模块或编译与内核交互的软件所需的必要头文件和元数据。这些头文件包通常与你系统上安装的Linux内核版本相匹配。</p>
+<p><strong>如果使用中的内核缺失头文件，可以使用如下命令安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install linux-headers-$(<span class="built_in">uname</span> -r)</span><br></pre></td></tr></table></figure>
+<p>命令 <code>apt install linux-headers-$(uname -r)</code>是用来安装Linux内核头文件的，它与基于Debian的系统上当前运行的内核版本相对应。下面是对该命令各部分的解释：</p>
+<p><code>apt</code>： 它是一个命令行软件包管理工具，在基于Debian的系统中使用，包括Ubuntu。<br><code>install</code>： 这是用来安装软件包的命令。<br><code>linux-headers-$（uname -r</code>： 这是一个由 <code>linux-headers</code>组成的软件包名称，后面是<code>uname -r</code>命令的输出。<br><code>uname -r</code>命令返回当前运行的内核版本。通过在软件包名称中使用<code>$(uname -r)</code>，该命令动态地将当前的内核版本插入软件包名称中。</p>
+<p>当你运行 <code>apt install linux-headers-$(uname -r)</code>命令时，它将安装符合你系统上当前运行的内核版本的Linux内核头文件。这些头文件对于构建和编译外部内核模块或与内核交互的软件是必要的。安装匹配的内核头文件可以确保与你系统上的内核版本兼容。</p>
+<h4 id="保持内核最新"><a href="#保持内核最新" class="headerlink" title="保持内核最新"></a>保持内核最新</h4><p>把下面命令添加到 <code>/etc/apt/preferences.d/pinning.pref</code> 文件中（如果没有，可创建）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Package: linux-image-amd64 linux-headers-amd64</span><br><span class="line">Pin: release n=buster-backports</span><br><span class="line">Pin-Priority: 900</span><br></pre></td></tr></table></figure>
+<h3 id="使用BBR脚本"><a href="#使用BBR脚本" class="headerlink" title="使用BBR脚本"></a>使用BBR脚本</h3><h4 id="BBT2"><a href="#BBT2" class="headerlink" title="BBT2"></a>BBT2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -q -O bbr2.sh <span class="string">&quot;https://github.com/yeyingorg/bbr2.sh/raw/master/bbr2.sh&quot;</span> &amp;&amp; <span class="built_in">chmod</span> +x bbr2.sh &amp;&amp; bash bbr2.sh auto</span><br></pre></td></tr></table></figure>
+<h4 id="BBRPLUS"><a href="#BBRPLUS" class="headerlink" title="BBRPLUS"></a>BBRPLUS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate <span class="string">&quot;https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot;</span> &amp;&amp; <span class="built_in">chmod</span> +x tcp.sh &amp;&amp; ./tcp.sh</span><br></pre></td></tr></table></figure>
+<p>这里再放一个bbr优化脚本，聊胜于无，对于中转机或者是配置比较差的机器可能会有点用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -Ls https://github.com/lanziii/bbr-/releases/download/123/tools.sh)</span><br></pre></td></tr></table></figure>
+<h4 id="查看BBR开启状态"><a href="#查看BBR开启状态" class="headerlink" title="查看BBR开启状态"></a>查看BBR开启状态</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure>
+<h2 id="VPS基础性能测试脚本"><a href="#VPS基础性能测试脚本" class="headerlink" title="VPS基础性能测试脚本"></a>VPS基础性能测试脚本</h2><h3 id="检测vps硬件信息，如cpu，硬盘等"><a href="#检测vps硬件信息，如cpu，硬盘等" class="headerlink" title="检测vps硬件信息，如cpu，硬盘等"></a>检测vps硬件信息，如cpu，硬盘等</h3><ul>
+<li><code>superbench</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash</span><br></pre></td></tr></table></figure>
+<p>这个脚本还会输入结果页面，可以直接分享网址别人，不过最近这个页面托管商需要登陆才能查看，不如直接复制了。以及speed测速也有分享网页的链接。具体看下面的结果。</p>
+<p><img src="https://eeimg.ylbolg.top/i/2023/05/19/w048bf.webp" alt="测试结果"></p>
+<ul>
+<li><code>yabs</code></li>
+</ul>
+<p>这个脚本和上面那个superbench比，IO测试比较完全，还能测试cpu分数。但是没有网速测试，所以我通常这两个脚本都使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sL yabs.sh | bash -s -- -i</span><br></pre></td></tr></table></figure>
+<p><img src="https://eeimg.ylbolg.top/i/2023/05/19/w77n7a.webp" alt="测试结果"></p>
+<p><img src="https://eeimg.ylbolg.top/i/2023/05/19/wd6r6r.webp" alt="geekbench6测试结果"></p>
+<h3 id="回程路由测试脚本"><a href="#回程路由测试脚本" class="headerlink" title="回程路由测试脚本"></a>回程路由测试脚本</h3><p>这里放的都是回程路由测试脚本，去程的自己ping或者去ipip.net自己测，工具很多，回程的脚本测试我找到两个比较好用的脚本。</p>
+<ul>
+<li><code>回程路由测试脚本简洁版</code></li>
+</ul>
+<p>说个好玩的，有人做了个这个脚本的魔改版本，1秒钟输出结果，全部显示是gia回程，有点意思。下面这个脚本是原版，测试结果不如详细回程路由里面自己判断准确，有些gia回程这个脚本会判断成cn2 gt。这是因为有些地区的gia回程难免出现202.97，这个脚本就会把gia线路判断成cn2 gt，不过总体来将这个脚本还是比较准确的。提示一下，电信回程没有优化的普通线路是163，联通普通回程时4837，移动普通回程是cmi。</p>
+<p>脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://raw.githubusercontent.com/zhucaidan/mtr_trace/main/mtr_trace.sh|bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q route.f2k.pub -O route &amp;&amp; bash route</span><br></pre></td></tr></table></figure>
+<p><img src="https://eeimg.ylbolg.top/i/2023/05/19/x9hdio.webp" alt="测试结果"></p>
+<ul>
+<li><code>回程测试脚本详细版</code></li>
+</ul>
+<p>脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- git.io/besttrace | bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/nanqinlang-script/testrace/master/testrace.sh</span><br><span class="line">bash testrace.sh</span><br></pre></td></tr></table></figure>
+<h3 id="三网测速脚本"><a href="#三网测速脚本" class="headerlink" title="三网测速脚本"></a>三网测速脚本</h3><p>其实最上面的那个superbenth脚本也能测速度，但是这个脚本是superbenth脚本的修复版，能测的节点比较多，但是只有国内节点测速。</p>
+<p>脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -Lso- https://git.io/superspeed_uxh)</span><br></pre></td></tr></table></figure>
+<p>其实测速最好的还是在vps上面自建一个speedtest测速，这个脚本比较复杂，有docker版本和普通脚本，普通的脚本容易报错，还是建议用docker自建一个测速</p>
+<p>这里可以看这两篇文章：<a target="_blank" rel="noopener" href="https://www.duangvps.com/archives/777">https://www.duangvps.com/archives/777</a></p>
+<p>以及：<a target="_blank" rel="noopener" href="https://www.duangvps.com/archives/491">https://www.duangvps.com/archives/491</a></p>
+<p><code>常用测试配置和到国内三网速度：</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- git.io/superbench.sh | bash</span><br></pre></td></tr></table></figure>
+<p><code>国内外各区域速度测速：</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench.sh &amp;&amp; bash ZBench.sh</span><br></pre></td></tr></table></figure>
+<h3 id="融合怪脚本"><a href="#融合怪脚本" class="headerlink" title="融合怪脚本"></a>融合怪脚本</h3><p>这个脚本非常不错，虽然是个融合脚本但是有很多别的脚本测不了的东西，有网络信息，IP信息，解锁信息，常用端口开放信息，硬件信息等。关于IP质量问题除了这个以外，IP信息还可以去这里查询，结果非常详细：<a target="_blank" rel="noopener" href="https://ipinfo.io/">https://ipinfo.io/</a></p>
+<p>github项目地址：<a target="_blank" rel="noopener" href="https://github.com/spiritLHLS/ecs">https://github.com/spiritLHLS/ecs</a></p>
+<p>脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(wget -qO- --no-check-certificate https://gitlab.com/spiritysdx/za/-/raw/main/ecs.sh)</span><br></pre></td></tr></table></figure>
+<p>或者是这个：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(wget -qO- --no-check-certificate https://github.com/spiritLHLS/ecs/raw/main/ecs.sh)</span><br></pre></td></tr></table></figure>
+<p><img src="https://eeimg.ylbolg.top/i/2023/05/19/x5saqe.webp" alt="结果"></p>
+<h3 id="unixbench性能测试"><a href="#unixbench性能测试" class="headerlink" title="unixbench性能测试"></a>unixbench性能测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/unixbench.sh &amp;&amp; <span class="built_in">chmod</span> +x unixbench.sh &amp;&amp; ./unixbench.sh</span><br></pre></td></tr></table></figure>
+<p>然后等待程序进行测试即可,这个过程可能比较漫长,请耐心等待，最后跑完将会有一个分数在底部出现，通常情况下1000分以上的VPS是性能较好的。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15060467/3822694">https://blog.51cto.com/u_15060467/3822694</a></p>
+<h3 id="宝塔面板"><a href="#宝塔面板" class="headerlink" title="宝塔面板"></a>宝塔面板</h3><ul>
+<li>Centos</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSO https://raw.githubusercontent.com/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh &amp;&amp; bash install_panel.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>屏蔽宝塔面板强制绑定手机号</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&quot;s|bind_user == &#x27;True&#x27;|bind_user == &#x27;XXXX&#x27;|&quot;</span> /www/server/panel/BTPanel/static/js/index.js</span><br></pre></td></tr></table></figure>
+<ul>
+<li>直接删除宝塔强制绑定手机JS文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -f /www/server/panel/data/bind.pl</span><br></pre></td></tr></table></figure>
+<ul>
+<li>宝塔面板登录地址及账号查看命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bt default</span><br></pre></td></tr></table></figure>
+<div class="note primary modern"><p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://iii80.com/?action=show&amp;id=1056">水月日记：测VPS的常用脚本</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.aloneray.com/782.html">VPS服务器的常用测试方法</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.aloneray.com/1181.html">各种一键bench的测试命令整合</a></p>
+</div>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>VPS常用脚本</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://ylbolg.top/posts/9a72d9db638d/">https://ylbolg.top/posts/9a72d9db638d/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>以蓝</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2022-09-19</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-11-14</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%84%9A%E6%9C%AC/">脚本</a><a class="post-meta__tags" href="/tags/linux/">linux</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/0e1c268b41ed/"><img class="prev-cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/10/python.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">python-idle设置清屏</div></div></a></div><div class="next-post pull-right"><a href="/posts/60b681a9b0ed/"><img class="next-cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/1249973.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">科普GFW</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/6dd7fe5dd5ec/" title="VPS基础知识"><img class="cover" src="https://yilan-picbed.oss-cn-hangzhou.aliyuncs.com/tjyl-img/2023/04/10/vps.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-15</div><div class="title">VPS基础知识</div></div></a></div><div><a href="/posts/b59f3b919c93/" title="docker项目汇总"><img class="cover" src="https://eeimg.ylbolg.top/i/2024/11/25/123vwfi.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-17</div><div class="title">docker项目汇总</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div></main><footer id="footer" style="background: #0a165e"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 以蓝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.umd.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.ylbolg.top/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.ylbolg.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script><script async src="/js/diytitle.js"></script><script defer src="/js/footertime.js"></script><script src="/js/wp.js"></script><script src="/js/denlong.js"></script><script src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'GT-PH3F9WT', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
