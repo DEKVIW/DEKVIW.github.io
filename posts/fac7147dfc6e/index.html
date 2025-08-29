@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Stable Diffusion web UI | 以蓝博客</title><meta name="keywords" content="AI"><meta name="author" content="以蓝"><meta name="copyright" content="以蓝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言好久没更了，最近又发现好玩的AI工具，分享给大家。 Stable Diffusion是一款功能异常强大的AI图片生成器。它支持文字生成图片，图片转图片，使用各种各样的模型来达到你想要的效果，还能训练你自己的专属模型。 简单来说，即使你没有绘画功底，只要文笔叙说的够详细准确也可以画出自己想要的图片，甚至超乎你的想象。  先转一波别人使用此工具生成的图：     自己部署生成的图片，个人电脑显存只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stable Diffusion web UI">
+<meta property="og:url" content="https://yilancn.top/posts/fac7147dfc6e/index.html">
+<meta property="og:site_name" content="以蓝博客">
+<meta property="og:description" content="前言好久没更了，最近又发现好玩的AI工具，分享给大家。 Stable Diffusion是一款功能异常强大的AI图片生成器。它支持文字生成图片，图片转图片，使用各种各样的模型来达到你想要的效果，还能训练你自己的专属模型。 简单来说，即使你没有绘画功底，只要文笔叙说的够详细准确也可以画出自己想要的图片，甚至超乎你的想象。  先转一波别人使用此工具生成的图：     自己部署生成的图片，个人电脑显存只">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eeimg.yilancn.top/i/2023/03/02/sz4vza.webp">
+<meta property="article:published_time" content="2023-03-07T09:06:23.000Z">
+<meta property="article:modified_time" content="2023-03-07T09:06:23.000Z">
+<meta property="article:author" content="以蓝">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eeimg.yilancn.top/i/2023/03/02/sz4vza.webp"><link rel="shortcut icon" href="/img/fav1.png"><link rel="canonical" href="https://yilancn.top/posts/fac7147dfc6e/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.1.1/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GT-PH3F9WT"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-PH3F9WT');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Stable Diffusion web UI',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-07 09:06:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/img/fontawesome-free/css/all.min.css"><!-- 左侧灯笼组--><div class="deng-box-left"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">新</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-left1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">年</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- 右侧灯笼组--><div class="deng-box-right"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">快</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-right1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">乐</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="centered"><div class="blob-1"></div><div class="blob-2"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ava.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">以蓝博客</a></span><div id="he-plugin-simple"></div><div id="none_space"></div><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Stable Diffusion web UI</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表</span><time class="post-meta-date-created" datetime="2023-03-07T09:06:23.000Z" title="发表 2023-03-07 09:06:23">2023-03-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2023-03-07T09:06:23.000Z" title="更新 2023-03-07 09:06:23">2023-03-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好久没更了，最近又发现好玩的AI工具，分享给大家。</p>
+<p>Stable Diffusion是一款功能异常强大的AI图片生成器。它支持文字生成图片，图片转图片，使用各种各样的模型来达到你想要的效果，还能训练你自己的专属模型。 简单来说，即使你没有绘画功底，只要文笔叙说的够详细准确也可以画出自己想要的图片，甚至超乎你的想象。</p>
+<ul>
+<li>先转一波别人使用此工具生成的图：</li>
+</ul>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/sstgxc.webp" alt="骨架分析重绘图片"></p>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/swu8ow.webp" alt="国风图"></p>
+<ul>
+<li>自己部署生成的图片，个人电脑显存只有4g，只能生成384*384的小图</li>
+</ul>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/sz4vza.webp" alt="国风"></p>
+<h2 id="电脑硬件要求"><a href="#电脑硬件要求" class="headerlink" title="电脑硬件要求"></a>电脑硬件要求</h2><ol>
+<li>Windows系统</li>
+<li>有独立显卡，并且是NVDIA卡，显存至少4个G。</li>
+<li>硬盘留有足够的空间，该程式占用30个G左右（包括模型）</li>
+</ol>
+<p>网络要求：可能需要魔法上网</p>
+<p>当然，mac系统，AMD显卡，显存少的情况也有方法安装使用，不过多少会出问题，而且功能不全，严重影响使用体验。</p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ul>
+<li><p>安装<a target="_blank" rel="noopener" href="https://www.python.org/downloads/">python</a>（安装版本最低3.10.6)</p>
+</li>
+<li><p>安装<a target="_blank" rel="noopener" href="https://git-scm.com/download/win">git</a></p>
+</li>
+<li><p>下载<a target="_blank" rel="noopener" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Stable Diffusion web UI源码</a></p>
+</li>
+</ul>
+<p>选择一个路径（最好放在C盘，以免后续出问题），新建<code>stable-diffusion-webui-master</code>文件夹，在这个文件夹下解压刚刚下载的<code>stable-diffusion-webui-master .zip</code>。</p>
+<ul>
+<li>显卡显存大于8G的忽略这步。显存小于8G修改上一步解压文件里面的<code>webui-user.bat</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">set PYTHON=</span><br><span class="line">set GIT=</span><br><span class="line">set VENV_DIR=</span><br><span class="line">set COMMANDLINE_ARGS=--xformers --medvram</span><br><span class="line"></span><br><span class="line">call webui.bat</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>显存4—6G修改成以上</strong></p>
+<p>显存不到2G把<code>--medvram</code>改成<code>--lowvram</code></p>
+<p>这样可以减少系统的负担，提高图片的运算速率。</p>
+<ul>
+<li>双击运行<code>webui-user.bat</code>等待安装，会花费挺长时间安装，全部的安装环境大概10个G</li>
+</ul>
+<p>可能出现的问题：</p>
+<p><code>Couldn‘t install gfpgan</code>，以下是报错代码</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">Installing gfpgan</span><br><span class="line">Traceback (most recent <span class="keyword">call</span> last):</span><br><span class="line">  File &quot;D:\Work\stable-diffusion-webui\launch.py&quot;, line <span class="number">324</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    prepare_environment()</span><br><span class="line">  File &quot;D:\Work\stable-diffusion-webui\launch.py&quot;, line <span class="number">239</span>, <span class="keyword">in</span> prepare_environment</span><br><span class="line">    run_pip(f&quot;install &#123;gfpgan_package&#125;&quot;, &quot;gfpgan&quot;)</span><br><span class="line">  File &quot;D:\Work\stable-diffusion-webui\launch.py&quot;, line <span class="number">106</span>, <span class="keyword">in</span> run_pip</span><br><span class="line">    return run(f&#x27;&quot;&#123;python&#125;&quot; -m pip &#123;args&#125; --prefer-binary&#123;index_url_line&#125;&#x27;, desc=f&quot;Installing &#123;desc&#125;&quot;, errdesc=f&quot;Couldn&#x27;t install &#123;desc&#125;&quot;)</span><br><span class="line">  File &quot;D:\Work\stable-diffusion-webui\launch.py&quot;, line <span class="number">74</span>, <span class="keyword">in</span> run</span><br><span class="line">    raise RuntimeError(message)</span><br><span class="line"><span class="function">RuntimeError: <span class="title">Couldn</span>&#x27;<span class="title">t</span> <span class="title">install</span> <span class="title">gfpgan</span>.</span></span><br><span class="line"><span class="function"><span class="title">Command</span>: &quot;<span class="title">D</span>:\<span class="title">Work</span>\<span class="title">stable</span>-<span class="title">diffusion</span>-<span class="title">webui</span>\<span class="title">venv</span>\<span class="title">Scripts</span>\<span class="title">python.exe</span>&quot; -<span class="title">m</span> <span class="title">pip</span> <span class="title">install</span> <span class="title">git</span>+<span class="title">https</span>://<span class="title">github.com</span>/<span class="title">TencentARC</span>/<span class="title">GFPGAN.git</span>@8<span class="title">d2447a2d918f8eba5a4a01463fd48e45126a379</span> --<span class="title">prefer</span>-<span class="title">binary</span></span></span><br><span class="line"><span class="function"><span class="title">Error</span> <span class="title">code</span>: 1</span></span><br><span class="line"><span class="function"><span class="title">stdout</span>: <span class="title">Collecting</span> <span class="title">git</span>+<span class="title">https</span>://<span class="title">github.com</span>/<span class="title">TencentARC</span>/<span class="title">GFPGAN.git</span>@8<span class="title">d2447a2d918f8eba5a4a01463fd48e45126a379</span></span></span><br><span class="line"><span class="function">  <span class="title">Cloning</span> <span class="title">https</span>://<span class="title">github.com</span>/<span class="title">TencentARC</span>/<span class="title">GFPGAN.git</span> (<span class="title">to</span> <span class="title">revision</span> 8<span class="title">d2447a2d918f8eba5a4a01463fd48e45126a379</span>) <span class="title">to</span> <span class="title">c</span>:\<span class="title">users</span>\<span class="title">cheapmeow</span>\<span class="title">appdata</span>\<span class="title">local</span>\<span class="title">temp</span>\<span class="title">pip</span>-<span class="title">req</span>-<span class="title">build</span>-<span class="title">ww9pc8i8</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">stderr</span>:   <span class="title">Running</span> <span class="title">command</span> <span class="title">git</span> <span class="title">clone</span> --<span class="title">filter</span>=<span class="title">blob:none</span> --<span class="title">quiet</span> <span class="title">https</span>://<span class="title">github.com</span>/<span class="title">TencentARC</span>/<span class="title">GFPGAN.git</span> &#x27;<span class="title">C</span>:\<span class="title">Users</span>\<span class="title">CheapMeow</span>\<span class="title">AppData</span>\<span class="title">Local</span>\<span class="title">Temp</span>\<span class="title">pip</span>-<span class="title">req</span>-<span class="title">build</span>-<span class="title">ww9pc8i8</span>&#x27;</span></span><br><span class="line"><span class="function">  <span class="title">error</span>: <span class="title">RPC</span> <span class="title">failed</span>; <span class="title">curl</span> 28 <span class="title">Recv</span> <span class="title">failure</span>: <span class="title">Connection</span> <span class="title">was</span> <span class="title">reset</span></span></span><br><span class="line"><span class="function">  <span class="title">fatal</span>: <span class="title">expected</span> <span class="title">flush</span> <span class="title">after</span> <span class="title">ref</span> <span class="title">listing</span></span></span><br><span class="line"><span class="function">  <span class="title">error</span>: <span class="title">subprocess</span>-<span class="title">exited</span>-<span class="title">with</span>-<span class="title">error</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  <span class="title">git</span> <span class="title">clone</span> --<span class="title">filter</span>=<span class="title">blob:none</span> --<span class="title">quiet</span> <span class="title">https</span>://<span class="title">github.com</span>/<span class="title">TencentARC</span>/<span class="title">GFPGAN.git</span> &#x27;<span class="title">C</span>:\<span class="title">Users</span>\<span class="title">CheapMeow</span>\<span class="title">AppData</span>\<span class="title">Local</span>\<span class="title">Temp</span>\<span class="title">pip</span>-<span class="title">req</span>-<span class="title">build</span>-<span class="title">ww9pc8i8</span>&#x27; <span class="title">did</span> <span class="title">not</span> <span class="title">run</span> <span class="title">successfully</span>.</span></span><br><span class="line"><span class="function">  <span class="title">exit</span> <span class="title">code</span>: 128</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  <span class="title">See</span> <span class="title">above</span> <span class="title">for</span> <span class="title">output</span>.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  <span class="title">note</span>: <span class="title">This</span> <span class="title">error</span> <span class="title">originates</span> <span class="title">from</span> <span class="title">a</span> <span class="title">subprocess</span>, <span class="title">and</span> <span class="title">is</span> <span class="title">likely</span> <span class="title">not</span> <span class="title">a</span> <span class="title">problem</span> <span class="title">with</span> <span class="title">pip</span>.</span></span><br><span class="line"><span class="function"><span class="title">error</span>: <span class="title">subprocess</span>-<span class="title">exited</span>-<span class="title">with</span>-<span class="title">error</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">git</span> <span class="title">clone</span> --<span class="title">filter</span>=<span class="title">blob:none</span> --<span class="title">quiet</span> <span class="title">https</span>://<span class="title">github.com</span>/<span class="title">TencentARC</span>/<span class="title">GFPGAN.git</span> &#x27;<span class="title">C</span>:\<span class="title">Users</span>\<span class="title">CheapMeow</span>\<span class="title">AppData</span>\<span class="title">Local</span>\<span class="title">Temp</span>\<span class="title">pip</span>-<span class="title">req</span>-<span class="title">build</span>-<span class="title">ww9pc8i8</span>&#x27; <span class="title">did</span> <span class="title">not</span> <span class="title">run</span> <span class="title">successfully</span>.</span></span><br><span class="line"><span class="function"><span class="title">exit</span> <span class="title">code</span>: 128</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">See</span> <span class="title">above</span> <span class="title">for</span> <span class="title">output</span>.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">note</span>: <span class="title">This</span> <span class="title">error</span> <span class="title">originates</span> <span class="title">from</span> <span class="title">a</span> <span class="title">subprocess</span>, <span class="title">and</span> <span class="title">is</span> <span class="title">likely</span> <span class="title">not</span> <span class="title">a</span> <span class="title">problem</span> <span class="title">with</span> <span class="title">pip</span>.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">[<span class="title">notice</span>] <span class="title">A</span> <span class="title">new</span> <span class="title">release</span> <span class="title">of</span> <span class="title">pip</span> <span class="title">available</span>: 22.2.1 -&gt; 22.3.1</span></span><br><span class="line"><span class="function">[<span class="title">notice</span>] <span class="title">To</span> <span class="title">update</span>, <span class="title">run</span>: <span class="title">D</span>:\<span class="title">Work</span>\<span class="title">stable</span>-<span class="title">diffusion</span>-<span class="title">webui</span>\<span class="title">venv</span>\<span class="title">Scripts</span>\<span class="title">python.exe</span> -<span class="title">m</span> <span class="title">pip</span> <span class="title">install</span> --<span class="title">upgrade</span> <span class="title">pip</span></span></span><br></pre></td></tr></table></figure>
+<p> <a target="_blank" rel="noopener" href="https://savokiss.com/tech/sdw-install-error.html" title="解决 stable-diffusion-webui 的 Couldn&#39;t install gfpgan 安装失败的问题">解决办法1</a></p>
+<p>找到stable-diffusion-webui-master文件夹下<code>launch.py</code>,打开编辑这个文件</p>
+<p>在所有<a target="_blank" rel="noopener" href="https://github.com前面添加https://ghproxy.com/。下面是修改好的。修改后保存文件">https://github.com前面添加https://ghproxy.com/。下面是修改好的。修改后保存文件</a>.</p>
+<p>删除<code>stable-diffusion-webui-master</code>文件夹下的<code>venv</code>文件夹（只要报错没有流畅安装完成，再次双击<code>webui-user.bat</code>运行之前都要删除这个文件）</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def prepare_environment():</span><br><span class="line">    global skip_install</span><br><span class="line"></span><br><span class="line">    torch_command = os.environ.get(&#x27;TORCH_COMMAND&#x27;, &quot;pip install torch==<span class="number">1</span>.<span class="number">13</span>.<span class="number">1</span>+cu117 torchvision==<span class="number">0</span>.<span class="number">14</span>.<span class="number">1</span>+cu117 --extra-index-url https://download.pytorch.org/whl/cu117&quot;)</span><br><span class="line">    requirements_file = os.environ.get(&#x27;REQS_FILE&#x27;, &quot;requirements_versions.txt&quot;)</span><br><span class="line">    commandline_args = os.environ.get(&#x27;COMMANDLINE_ARGS&#x27;, &quot;&quot;)</span><br><span class="line"></span><br><span class="line">    xformers_package = os.environ.get(&#x27;XFORMERS_PACKAGE&#x27;, &#x27;xformers==<span class="number">0</span>.<span class="number">0</span>.<span class="number">16</span>rc425&#x27;)</span><br><span class="line">    gfpgan_package = os.environ.get(&#x27;GFPGAN_PACKAGE&#x27;, &quot;git+https://ghproxy.com/https://github.com/TencentARC/GFPGAN.git@<span class="number">8</span>d2447a2d918f8eba5a4a01463fd48e45126a379&quot;)</span><br><span class="line">    clip_package = os.environ.get(&#x27;CLIP_PACKAGE&#x27;, &quot;git+https://ghproxy.com/https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e4823fc8e1&quot;)</span><br><span class="line">    openclip_package = os.environ.get(&#x27;OPENCLIP_PACKAGE&#x27;, &quot;git+https://ghproxy.com/https://github.com/mlfoundations/open_clip.git@bb6e834e9c70d9c27d0dc3ecedeebeaeb1ffad6b&quot;)</span><br><span class="line"></span><br><span class="line">    stable_diffusion_repo = os.environ.get(&#x27;STABLE_DIFFUSION_REPO&#x27;, &quot;https://ghproxy.com/https://github.com/Stability-AI/stablediffusion.git&quot;)</span><br><span class="line">    taming_transformers_repo = os.environ.get(&#x27;TAMING_TRANSFORMERS_REPO&#x27;, &quot;https://ghproxy.com/https://github.com/CompVis/taming-transformers.git&quot;)</span><br><span class="line">    k_diffusion_repo = os.environ.get(&#x27;K_DIFFUSION_REPO&#x27;, &#x27;https://ghproxy.com/https://github.com/crowsonkb/k-diffusion.git&#x27;)</span><br><span class="line">    codeformer_repo = os.environ.get(&#x27;CODEFORMER_REPO&#x27;, &#x27;https://ghproxy.com/https://github.com/sczhou/CodeFormer.git&#x27;)</span><br><span class="line">    blip_repo = os.environ.get(&#x27;BLIP_REPO&#x27;, &#x27;https://ghproxy.com/https://github.com/salesforce/BLIP.git&#x27;)</span><br><span class="line"></span><br><span class="line">    stable_diffusion_commit_hash = os.environ.get(&#x27;STABLE_DIFFUSION_COMMIT_HASH&#x27;, &quot;<span class="number">47</span>b6b607fdd31875c9279cd2f4f16b92e4ea958e&quot;)</span><br><span class="line">    taming_transformers_commit_hash = os.environ.get(&#x27;TAMING_TRANSFORMERS_COMMIT_HASH&#x27;, &quot;<span class="number">24268930</span>bf1dce879235a7fddd0b2355b84d7ea6&quot;)</span><br><span class="line">    k_diffusion_commit_hash = os.environ.get(&#x27;K_DIFFUSION_COMMIT_HASH&#x27;, &quot;<span class="number">5</span>b3af030dd83e0297272d861c19477735d0317ec&quot;)</span><br><span class="line">    codeformer_commit_hash = os.environ.get(&#x27;CODEFORMER_COMMIT_HASH&#x27;, &quot;c5b4593074ba6214284d6acd5f1719b6c5d739af&quot;)</span><br><span class="line">    blip_commit_hash = os.environ.get(&#x27;BLIP_COMMIT_HASH&#x27;, &quot;<span class="number">48211</span>a1594f1321b00f14c9f7a5b4813144b2fb9&quot;)</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Harajukuuuu/article/details/129168550" title="本地部署stable-diffusion-webui出现Couldn‘t install gfpgan错误的解决方法">解决方案2 </a></p>
+<p>假如没有其它报错，成功安装后会出现本地链接网址，把网址复制到浏览器就能访问。不要退出cmd！！！</p>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/o2in36-0.webp" alt="成功安装"></p>
+<ul>
+<li>添加中文语言包</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/VinsonLaro/stable-diffusion-webui-chinese">https://github.com/VinsonLaro/stable-diffusion-webui-chinese</a></p>
+<p>把上面的地址粘贴在下图的第三步，点击install</p>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/ql1zfx.webp" alt="安装中文包"></p>
+<p>重启web-ui</p>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/qmmqjt.webp" alt="重启web-ui"></p>
+<p>选择Settings，选择user interface，选择chinese-all-0220</p>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/qputcf.webp" alt="改中文"></p>
+<p>应用设置，重载UI</p>
+<p><img src="https://eeimg.yilancn.top/i/2023/03/02/qsjqsc-0.webp" alt="保存设置"></p>
+<h2 id="文字生成图片界面介绍"><a href="#文字生成图片界面介绍" class="headerlink" title="文字生成图片界面介绍"></a>文字生成图片界面介绍</h2><p><img src="https://eeimg.yilancn.top/i/2023/03/02/r6cojv.webp" alt="文转图"></p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="模型推荐"><a href="#模型推荐" class="headerlink" title="模型推荐"></a>模型推荐</h3><ul>
+<li>人体骨架分析模型<code>control_sd15_openpose</code>，作用是可以把真人图片上传到web-ui，分析出图片中人物的姿势骨架，然后重新绘图。</li>
+<li>国风模型<code>guofeng3_v32</code>：生成的人物，符合国人审美，富有中国元素</li>
+<li>anythion4.0：比较适合绘制动漫风格人物</li>
+<li><code>stablydiffuseds_26</code></li>
+</ul>
+<h3 id="AI模型"><a href="#AI模型" class="headerlink" title="AI模型"></a>AI模型</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/">https://huggingface.co/</a> </li>
+<li><a target="_blank" rel="noopener" href="https://civitai.com/">https://civitai.com/</a> </li>
+</ol>
+<h2 id="提示词"><a href="#提示词" class="headerlink" title="提示词"></a>提示词</h2><p>提示词（prompt）：图中想要出现的内容。</p>
+<p>标配提示词：<code>masterpiece</code>,<code>best quality</code>。</p>
+<p>反向提示词（negative prompt）：图中不想要的内容</p>
+<p>提示词可以使用翻译软件翻译成英语直接用，也可以使用TAG来展示，一个提示词后面一个逗号，复杂的语法，比如（），and，or，：，[]等怎么使用可以自己拓展了解。提示词越靠前，优先级越高，把重点想画的内容放在最前面。比如<code>masterpiece</code>,<code>best quality</code>的意思是大师级，高质量绘画，把它们放在最前面，出来的图片质量就会比较好。</p>
+<h3 id="提示词在线网站"><a href="#提示词在线网站" class="headerlink" title="提示词在线网站"></a>提示词在线网站</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://docs.qq.com/doc/DWHl3am5Zb05QbGVs">元素法典</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://wolfchen.top/tag/">NovelAI tag生成器 V2.1</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://dskjal.com/">18plus</a></p>
+</li>
+</ul>
+<h3 id="提示词示例"><a href="#提示词示例" class="headerlink" title="提示词示例"></a>提示词示例</h3><p>正向提示词</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 girls,4 girls on the beach,back to the sea,White dress,beautiful white gauze skirt,bikini,intricate,elegant,highly detailed,digita painting,concept art,summer lights,queen,sunset,orange sky,pink nightgown,simple background,soft light&lt;lora:dalcefopainting_Lora300:1&gt;</span><br></pre></td></tr></table></figure>
+<p>反向提示词</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nude,naked,hands,cartoon,thick strokes,((disfigured)),((bad art)),((deformed)),((poorly drawn)),((extra limbs)),((close up)),((b&amp;w)),weird colors,blurry,complex</span><br></pre></td></tr></table></figure>
+<p>正向提示词</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1girl, beautiful, realistic</span><br></pre></td></tr></table></figure>
+<p>反向提示词</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(((simple background))),monochrome ,lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, lowres, bad anatomy, bad hands, text, error, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, ugly,pregnant,vore,duplicate,morbid,mut ilated,tran nsexual, hermaphrodite,long neck,mutated hands,poorly drawn hands,poorly drawn face,mutation,deformed,blurry,bad anatomy,bad proportions,malformed limbs,extra limbs,cloned face,disfigured,gross proportions, (((missing arms))),(((missing legs))), (((extra arms))),(((extra legs))),pubic hair, plump,bad legs,error legs,username,blurry,bad feet</span><br></pre></td></tr></table></figure>
+<h2 id="在线体验使用"><a href="#在线体验使用" class="headerlink" title="在线体验使用"></a>在线体验使用</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast_stable_diffusion_AUTOMATIC1111.ipynb">谷歌云端线上运行</a></li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://dreamlike.art/">dreamlike.art</a></li>
+</ul>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><ul>
+<li>本地部署 AI作画工具 stable-diffusion-webui 多种模型 可生成NSFW</li>
+</ul>
+<p>​          <a target="_blank" rel="noopener" href="https://www.tjsky.net/tutorial/457">https://www.tjsky.net/tutorial/457</a></p>
+<ul>
+<li>AI绘画指南 stable diffusion webui （SD webui）如何设置与使用</li>
+</ul>
+<p>​          <a target="_blank" rel="noopener" href="https://www.tjsky.net/tutorial/488">https://www.tjsky.net/tutorial/488</a></p>
+<ul>
+<li>Stable Diffusion2.1+WebUI的安装与使用（极详细）</li>
+</ul>
+<p>​         <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv20466834">https://www.bilibili.com/read/cv20466834</a></p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>Stable Diffusion web UI</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://yilancn.top/posts/fac7147dfc6e/">https://yilancn.top/posts/fac7147dfc6e/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>以蓝</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-03-07</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-03-07</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/de97d17795a4/"><img class="prev-cover" src="https://eeimg.yilancn.top/i/2023/03/08/ubj0cq.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">批量创建并命名文件夹</div></div></a></div><div class="next-post pull-right"><a href="/posts/1a5d64c54e0c/"><img class="next-cover" src="https://images2.alphacoders.com/550/550405.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">win10激活</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/dce8f0a60eb5/" title="AI图像处理"><img class="cover" src="https://eeimg.yilancn.top/i/2024/11/27/qz4pca.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-04</div><div class="title">AI图像处理</div></div></a></div><div><a href="/posts/c44b8cb0b677/" title="chatgpt写代码"><img class="cover" src="https://eeimg.yilancn.top/i/2023/09/07/10uqnk1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-07</div><div class="title">chatgpt写代码</div></div></a></div><div><a href="/posts/983a7a3a1d1b/" title="图片上色、ChtaGpt"><img class="cover" src="https://eeimg.yilancn.top/i/2023/03/08/w08sov.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-08</div><div class="title">图片上色、ChtaGpt</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ava.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">以蓝</div><div class="author-info__description">孜孜以求，青出于蓝</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.yilan.uk"><i class="fab fa-github"></i><span>YiLan's Blog</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DEKVIW" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/zhi-xiao-tian-xia-shi-16" target="_blank" title="知乎"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzg5Njg3NTAxMA==&amp;scene=124#wechat_redirect" target="_blank" title="公众号"><i class="fab fa-weixin"></i></a><a class="social-icon" href="mailto:dekviw233@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%84%91%E7%A1%AC%E4%BB%B6%E8%A6%81%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">电脑硬件要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">安装步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87%E7%95%8C%E9%9D%A2%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.</span> <span class="toc-text">文字生成图片界面介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%8E%A8%E8%8D%90"><span class="toc-number">5.1.</span> <span class="toc-text">模型推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AI%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.2.</span> <span class="toc-text">AI模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">6.</span> <span class="toc-text">提示词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99"><span class="toc-number">6.1.</span> <span class="toc-text">提示词在线网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E8%AF%8D%E7%A4%BA%E4%BE%8B"><span class="toc-number">6.2.</span> <span class="toc-text">提示词示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">在线体验使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">8.</span> <span class="toc-text">推荐阅读</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/bc36db69050d/" title="如何在本地项目中使用不同Git账号推送代码"><img src="https://eeimg.yilancn.top/i/2025/08/30/cb3kgr.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在本地项目中使用不同Git账号推送代码"/></a><div class="content"><a class="title" href="/posts/bc36db69050d/" title="如何在本地项目中使用不同Git账号推送代码">如何在本地项目中使用不同Git账号推送代码</a><time datetime="2025-08-30T07:19:16.000Z" title="发表 2025-08-30 07:19:16">2025-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/0b97e9411c90/" title="无需数据库使用docker搭建moontv视频站"><img src="https://eeimg.yilancn.top/i/2025/08/27/m2hdjr.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无需数据库使用docker搭建moontv视频站"/></a><div class="content"><a class="title" href="/posts/0b97e9411c90/" title="无需数据库使用docker搭建moontv视频站">无需数据库使用docker搭建moontv视频站</a><time datetime="2025-08-27T12:55:51.000Z" title="发表 2025-08-27 12:55:51">2025-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/cc7025045d6d/" title="打印机购买"><img src="https://eeimg.yilancn.top/i/2025/06/05/cf6g27.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="打印机购买"/></a><div class="content"><a class="title" href="/posts/cc7025045d6d/" title="打印机购买">打印机购买</a><time datetime="2025-06-05T07:48:46.000Z" title="发表 2025-06-05 07:48:46">2025-06-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/82e1581be016/" title="网盘资源电报频道监控"><img src="https://eeimg.yilancn.top/i/2025/06/04/w95vju.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网盘资源电报频道监控"/></a><div class="content"><a class="title" href="/posts/82e1581be016/" title="网盘资源电报频道监控">网盘资源电报频道监控</a><time datetime="2025-06-04T19:41:35.000Z" title="发表 2025-06-04 19:41:35">2025-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/e7ab7947cf5d/" title="放弃OneNav,使用Curor写了一个书签导航系统"><img src="https://eeimg.yilancn.top/i/2025/04/20/hcr7jx.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="放弃OneNav,使用Curor写了一个书签导航系统"/></a><div class="content"><a class="title" href="/posts/e7ab7947cf5d/" title="放弃OneNav,使用Curor写了一个书签导航系统">放弃OneNav,使用Curor写了一个书签导航系统</a><time datetime="2025-04-20T10:01:56.000Z" title="发表 2025-04-20 10:01:56">2025-04-20</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0a165e"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 以蓝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.umd.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script><script async src="/js/diytitle.js"></script><script defer src="/js/footertime.js"></script><script src="/js/wp.js"></script><script src="/js/denlong.js"></script><script src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'GT-PH3F9WT', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
