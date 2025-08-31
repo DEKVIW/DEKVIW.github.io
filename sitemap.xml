@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yilancn.top/wallpaper/index.html</loc>
-    
-    <lastmod>2025-08-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yilancn.top/tags/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
@@ -20,16 +11,7 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/img/fontawesome-free/metadata/shims.json</loc>
-    
-    <lastmod>2025-08-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yilancn.top/img/fontawesome-free/metadata/sponsors.json</loc>
+    <loc>https://yilancn.top/wallpaper/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -48,6 +30,24 @@
   
   <url>
     <loc>https://yilancn.top/img/fontawesome-free/metadata/shims.json</loc>
+    
+    <lastmod>2025-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yilancn.top/img/fontawesome-free/metadata/shims.json</loc>
+    
+    <lastmod>2025-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yilancn.top/img/fontawesome-free/metadata/sponsors.json</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -92,15 +92,6 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/comment/index.html</loc>
-    
-    <lastmod>2025-08-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yilancn.top/about/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
@@ -111,6 +102,15 @@
   
   <url>
     <loc>https://yilancn.top/categories/index.html</loc>
+    
+    <lastmod>2025-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yilancn.top/comment/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -1008,13 +1008,6 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/%E7%A1%AC%E7%9B%98/</loc>
-    <lastmod>2025-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yilancn.top/tags/%E6%B8%B8%E6%88%8F/</loc>
     <lastmod>2025-08-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -1023,6 +1016,13 @@
   
   <url>
     <loc>https://yilancn.top/tags/%E7%BD%91%E7%9B%98/</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yilancn.top/tags/%E7%A1%AC%E7%9B%98/</loc>
     <lastmod>2025-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
