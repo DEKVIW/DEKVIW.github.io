@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>chatgpt写代码 | 以蓝博客</title><meta name="keywords" content="AI,python,ChatGpt"><meta name="author" content="以蓝"><meta name="copyright" content="以蓝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="持续更新chatgpt写出地实用代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chatgpt写代码">
+<meta property="og:url" content="https://yilancn.top/posts/440ceae5053f/index.html">
+<meta property="og:site_name" content="以蓝博客">
+<meta property="og:description" content="持续更新chatgpt写出地实用代码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eeimg.yilancn.top/i/2023/09/07/10uqnk1.webp">
+<meta property="article:published_time" content="2023-09-07T01:19:34.000Z">
+<meta property="article:modified_time" content="2024-10-08T01:19:34.000Z">
+<meta property="article:author" content="以蓝">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="ChatGpt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eeimg.yilancn.top/i/2023/09/07/10uqnk1.webp"><link rel="shortcut icon" href="/img/fav1.png"><link rel="canonical" href="https://yilancn.top/posts/440ceae5053f/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.1.1/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GT-PH3F9WT"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-PH3F9WT');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'chatgpt写代码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-08 09:19:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/img/fontawesome-free/css/all.min.css"><!-- 左侧灯笼组--><div class="deng-box-left"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">新</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-left1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">年</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- 右侧灯笼组--><div class="deng-box-right"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">快</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-right1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">乐</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="centered"><div class="blob-1"></div><div class="blob-2"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ava.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">以蓝博客</a></span><div id="he-plugin-simple"></div><div id="none_space"></div><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">chatgpt写代码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表</span><time class="post-meta-date-created" datetime="2023-09-07T01:19:34.000Z" title="发表 2023-09-07 09:19:34">2023-09-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2024-10-08T01:19:34.000Z" title="更新 2024-10-08 09:19:34">2024-10-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="下载图片"><a href="#下载图片" class="headerlink" title="下载图片"></a>下载图片</h2><p>从指定的 Typora Markdown 文件中提取所有图片链接，并将这些图片下载到本地的 <code>downloaded_images</code> 文件夹中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> filedialog</span><br><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 Tkinter 窗口</span></span><br><span class="line">root = tk.Tk()</span><br><span class="line">root.withdraw()  <span class="comment"># 隐藏主窗口</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 让用户选择一个 Typora 文件</span></span><br><span class="line">typora_file_path = filedialog.askopenfilename(title=<span class="string">&quot;选择 Typora 文件&quot;</span>, filetypes=[(<span class="string">&quot;Markdown 文件&quot;</span>, <span class="string">&quot;*.md&quot;</span>)])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否选择了文件</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> typora_file_path:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;未选择文件，退出...&quot;</span>)</span><br><span class="line">    exit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取选定的 Typora 文件内容</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(typora_file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    content = file.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用正则表达式查找所有图片链接</span></span><br><span class="line">img_links = re.findall(<span class="string">r&#x27;!\[.*?\]\((.*?)\)&#x27;</span>, content)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个目录来保存下载的图片</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&#x27;downloaded_images&#x27;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&#x27;downloaded_images&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载并重命名图片</span></span><br><span class="line"><span class="keyword">for</span> i, img_link <span class="keyword">in</span> <span class="built_in">enumerate</span>(img_links):</span><br><span class="line">    response = requests.get(img_link)</span><br><span class="line">    <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">        <span class="comment"># 提取文件扩展名</span></span><br><span class="line">        file_extension = os.path.splitext(img_link)[-<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># 构建一个新文件名</span></span><br><span class="line">        new_filename = <span class="string">f&#x27;downloaded_images/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span><span class="subst">&#123;file_extension&#125;</span>&#x27;</span></span><br><span class="line">        <span class="comment"># 保存图片</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(new_filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> img_file:</span><br><span class="line">            img_file.write(response.content)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;下载成功: <span class="subst">&#123;new_filename&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;下载失败: <span class="subst">&#123;img_link&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;图片下载完成。&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>确保已安装所需的Python库，可以使用以下命令安装：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
+<p>您可以使用上面提供的Python代码来下载Typora文件中的图片。以下是如何使用这个Python脚本的步骤：</p>
+<ol>
+<li><p>复制上面的Python代码并粘贴到一个文本编辑器中（如Notepad++或Visual Studio Code）。</p>
+</li>
+<li><p>保存脚本文件并确保文件扩展名为<code>.py</code>（例如<code>download_typora_images.py</code>）。</p>
+</li>
+<li><p>打开命令行终端（例如cmd或终端）。</p>
+</li>
+<li><p>在终端中，导航到包含脚本文件的目录，使用<code>cd</code>命令切换到该目录，例如：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /<span class="built_in">path</span>/to/script/directory</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行脚本，使用以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python download_typora_images.py</span><br></pre></td></tr></table></figure>
+<p>确保您已安装了Python，并且<code>python</code>命令可以在命令行中正常运行。</p>
+</li>
+<li><p>脚本将开始执行，根据Typora文件中的图片链接下载图片，并将它们以阿拉伯数字从小到大命名，保存在名为<code>downloaded_images</code>的文件夹中。</p>
+</li>
+</ol>
+<p>请注意，脚本执行完成后，您将在脚本文件的目录中看到一个名为<code>downloaded_images</code>的文件夹，其中包含下载的图片。确保在运行脚本之前备份Typora文件，以防万一。</p>
+<h2 id="替换域名"><a href="#替换域名" class="headerlink" title="替换域名"></a>替换域名</h2><p>需求背景：hexo的_post文章目录下有50多个.md格式的文件，每个文件里面有图片链接，更换新的图床的域名。</p>
+<p>功能：批量在指定文件夹中的所有 <code>.md</code> 文件中执行查找和替换操作。选择一个文件夹，并通过自定义对话框输入查找文本、替换文本以及选择是否使用正则表达式。然后，程序遍历文件夹中的所有 Markdown 文件，执行文本替换操作，若内容发生变化，会将修改后的内容写回文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> filedialog, messagebox</span><br><span class="line"><span class="keyword">from</span> tkinter.simpledialog <span class="keyword">import</span> Dialog</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义对话框类，用于查找和替换文本输入</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SearchReplaceDialog</span>(<span class="title class_ inherited__">Dialog</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, parent</span>):</span><br><span class="line">        self.search_text = <span class="string">&quot;&quot;</span></span><br><span class="line">        self.replace_text = <span class="string">&quot;&quot;</span></span><br><span class="line">        self.use_regex = <span class="literal">False</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(parent, title=<span class="string">&quot;查找和替换&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">body</span>(<span class="params">self, master</span>):</span><br><span class="line">        tk.Label(master, text=<span class="string">&quot;查找文本:&quot;</span>).grid(row=<span class="number">0</span>)</span><br><span class="line">        tk.Label(master, text=<span class="string">&quot;替换文本:&quot;</span>).grid(row=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        self.search_entry = tk.Entry(master)</span><br><span class="line">        self.replace_entry = tk.Entry(master)</span><br><span class="line"></span><br><span class="line">        self.search_entry.grid(row=<span class="number">0</span>, column=<span class="number">1</span>)</span><br><span class="line">        self.replace_entry.grid(row=<span class="number">1</span>, column=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 模式选择：全局替换 or 正则表达式</span></span><br><span class="line">        self.mode_var = tk.BooleanVar(value=<span class="literal">False</span>)</span><br><span class="line">        tk.Radiobutton(master, text=<span class="string">&quot;全局替换&quot;</span>, variable=self.mode_var, value=<span class="literal">False</span>).grid(row=<span class="number">2</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>)</span><br><span class="line">        tk.Radiobutton(master, text=<span class="string">&quot;正则表达式&quot;</span>, variable=self.mode_var, value=<span class="literal">True</span>).grid(row=<span class="number">2</span>, column=<span class="number">1</span>, columnspan=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.search_entry  <span class="comment"># 初始聚焦</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">apply</span>(<span class="params">self</span>):</span><br><span class="line">        self.search_text = self.search_entry.get()</span><br><span class="line">        self.replace_text = self.replace_entry.get()</span><br><span class="line">        self.use_regex = self.mode_var.get()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># 创建主窗口并隐藏</span></span><br><span class="line">    root = tk.Tk()</span><br><span class="line">    root.withdraw()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 选择文件夹</span></span><br><span class="line">    folder_path = filedialog.askdirectory(title=<span class="string">&quot;请选择文件夹&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> folder_path:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;未选择文件夹，操作取消。&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示查找和替换对话框</span></span><br><span class="line">    dialog = SearchReplaceDialog(root)</span><br><span class="line">    search_text = dialog.search_text</span><br><span class="line">    replace_text = dialog.replace_text</span><br><span class="line">    use_regex = dialog.use_regex</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> search_text <span class="keyword">or</span> <span class="keyword">not</span> replace_text:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;查找或替换文本为空，操作取消。&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历目录中的所有 .md 文件</span></span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(folder_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(<span class="string">&quot;.md&quot;</span>):</span><br><span class="line">                file_path = os.path.join(root, file)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 打开文件并读取内容，确保使用 UTF-8 编码</span></span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    content = f.read()</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 替换内容，增加 re.DOTALL 以匹配多行文本</span></span><br><span class="line">                <span class="keyword">if</span> use_regex:</span><br><span class="line">                    <span class="comment"># 使用 re.DOTALL 标志以匹配跨多行的文本</span></span><br><span class="line">                    new_content = re.sub(search_text, replace_text, content, flags=re.DOTALL)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    new_content = content.replace(search_text, replace_text)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 如果内容发生变化，则写回文件</span></span><br><span class="line">                <span class="keyword">if</span> content != new_content:</span><br><span class="line">                    <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                        f.write(new_content)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">f&quot;替换成功：<span class="subst">&#123;file_path&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">f&quot;未发现替换内容：<span class="subst">&#123;file_path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;替换操作完成！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h2 id="生成树状目录结构"><a href="#生成树状目录结构" class="headerlink" title="生成树状目录结构"></a>生成树状目录结构</h2><p><strong>功能：win10环境生成树状目录结构</strong></p>
+<p>先安装treelib</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install treelib</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> Tk, filedialog, simpledialog</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">from</span> treelib <span class="keyword">import</span> Tree</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">select_root_directory</span>():</span><br><span class="line">    <span class="comment"># 创建 Tkinter 窗口（隐藏主窗口）</span></span><br><span class="line">    root = Tk()</span><br><span class="line">    root.withdraw()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打开目录选择弹窗</span></span><br><span class="line">    folder_selected = filedialog.askdirectory(title=<span class="string">&quot;请选择根目录&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> folder_selected:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;未选择目录，程序退出。&quot;</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    <span class="keyword">return</span> folder_selected</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">build_tree</span>(<span class="params">tree, root_path, depth, parent=<span class="literal">None</span>, level=<span class="number">0</span></span>):</span><br><span class="line">    <span class="comment"># 递归生成目录树</span></span><br><span class="line">    <span class="keyword">if</span> level &gt; depth:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    root_path = Path(root_path)</span><br><span class="line">    node_name = root_path.name</span><br><span class="line">    <span class="keyword">if</span> parent <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        tree.create_node(node_name, root_path, parent=parent)  <span class="comment"># 创建根节点</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        tree.create_node(node_name, root_path, parent=parent)  <span class="comment"># 创建子节点</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历子文件夹</span></span><br><span class="line">    <span class="keyword">for</span> child <span class="keyword">in</span> root_path.iterdir():</span><br><span class="line">        <span class="keyword">if</span> child.is_dir():</span><br><span class="line">            build_tree(tree, child, depth, root_path, level + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_tree_to_file</span>(<span class="params">tree, output_file=<span class="string">&quot;directory_structure.txt&quot;</span></span>):</span><br><span class="line">    <span class="comment"># 使用 ASCII 树状结构并替换 `+--` 为 `└──`</span></span><br><span class="line">    tree_output = tree.show(line_type=<span class="string">&quot;ascii&quot;</span>, stdout=<span class="literal">False</span>)</span><br><span class="line">    tree_output = tree_output.replace(<span class="string">&#x27;+--&#x27;</span>, <span class="string">&#x27;└──&#x27;</span>)  <span class="comment"># 替换 `+--` 为 `└──`</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(output_file, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(tree_output)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;目录结构已保存到 <span class="subst">&#123;output_file&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 选择根目录</span></span><br><span class="line">    root_dir = select_root_directory()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 输入显示的目录级数</span></span><br><span class="line">    Tk().withdraw()  <span class="comment"># 隐藏主窗口</span></span><br><span class="line">    max_depth = simpledialog.askinteger(<span class="string">&quot;输入目录级数&quot;</span>, <span class="string">&quot;请输入要显示的目录层级：&quot;</span>, minvalue=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建目录树</span></span><br><span class="line">    directory_tree = Tree()</span><br><span class="line">    build_tree(directory_tree, root_dir, max_depth)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 输出目录结构到 txt 文件</span></span><br><span class="line">    save_tree_to_file(directory_tree)</span><br></pre></td></tr></table></figure>
+<h2 id="提取链接"><a href="#提取链接" class="headerlink" title="提取链接"></a>提取链接</h2><p>需求背景：使用<code>批量准转存夸克云盘链接工具</code>的时候需要把云盘分享链接一行一个的保存到txt文件里面。</p>
+<p>功能：从选择的 <code>.txt</code> 文件中提取所有 HTTP 或 HTTPS 开头的链接，并将这些链接保存到一个新的文本文件中。通过文件选择对话框选取文件后，程序读取文件内容并使用正则表达式提取链接。提取到的链接会被写入一个新文件，文件名是原文件名加上 <code>_links_only</code> 后缀。如果没有找到链接，则会显示提示信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> filedialog</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_links_from_text</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="comment"># 使用正则表达式匹配 HTTP 或 HTTPS 开头的链接</span></span><br><span class="line">    <span class="keyword">return</span> re.findall(<span class="string">r&#x27;https?://[^\s]+&#x27;</span>, text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># 创建文件选择窗口</span></span><br><span class="line">    root = tk.Tk()</span><br><span class="line">    root.withdraw()  <span class="comment"># 隐藏主窗口</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打开文件选择对话框</span></span><br><span class="line">    file_path = filedialog.askopenfilename(filetypes=[(<span class="string">&quot;Text files&quot;</span>, <span class="string">&quot;*.txt&quot;</span>)])</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> file_path:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;未选择文件&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 读取文件内容</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        content = file.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取链接</span></span><br><span class="line">    links = extract_links_from_text(content)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果有链接，写入到新的文件</span></span><br><span class="line">    <span class="keyword">if</span> links:</span><br><span class="line">        output_path = file_path.replace(<span class="string">&#x27;.txt&#x27;</span>, <span class="string">&#x27;_links_only.txt&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(output_path, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> output_file:</span><br><span class="line">            <span class="keyword">for</span> link <span class="keyword">in</span> links:</span><br><span class="line">                output_file.write(link + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;提取的链接已保存到：<span class="subst">&#123;output_path&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;未找到链接&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>chatgpt写代码</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://yilancn.top/posts/440ceae5053f/">https://yilancn.top/posts/440ceae5053f/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>以蓝</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-09-07</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-10-08</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/ChatGpt/">ChatGpt</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/c7ad847c413f/"><img class="prev-cover" src="https://eeimg.yilancn.top/i/2025/05/30/k60rg7.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">docker安装hexo</div></div></a></div><div class="next-post pull-right"><a href="/posts/2ba135cc8a48/"><img class="next-cover" src="https://eeimg.yilancn.top/i/2024/09/08/yqkejo.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">AWS一年免费使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/69f110715577/" title="AI图像处理"><img class="cover" src="https://eeimg.yilancn.top/i/2024/11/27/qz4pca.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-04</div><div class="title">AI图像处理</div></div></a></div><div><a href="/posts/4f07eebef4c4/" title="Stable Diffusion web UI"><img class="cover" src="https://eeimg.yilancn.top/i/2023/03/02/sz4vza.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-07</div><div class="title">Stable Diffusion web UI</div></div></a></div><div><a href="/posts/0ca696416419/" title="图片上色、ChtaGpt"><img class="cover" src="https://eeimg.yilancn.top/i/2023/03/08/w08sov.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-08</div><div class="title">图片上色、ChtaGpt</div></div></a></div><div><a href="/posts/ccd305685ee2/" title="YouTube 视频批量下载"><img class="cover" src="https://eeimg.yilancn.top/i/2024/11/15/nlc49b.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-15</div><div class="title">YouTube 视频批量下载</div></div></a></div><div><a href="/posts/e200fc7e172d/" title="PDF去水印方法大全"><img class="cover" src="https://eeimg.yilancn.top/i/2025/03/19/12cqg2y.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-19</div><div class="title">PDF去水印方法大全</div></div></a></div><div><a href="/posts/70ef13fd1f07/" title="python-idle设置清屏"><img class="cover" src="https://eeimg.yilancn.top/i/2023/04/10/python.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-04</div><div class="title">python-idle设置清屏</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ava.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">以蓝</div><div class="author-info__description">孜孜以求，青出于蓝</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.yilan.uk"><i class="fab fa-github"></i><span>YiLan's Blog</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DEKVIW" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/zhi-xiao-tian-xia-shi-16" target="_blank" title="知乎"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzg5Njg3NTAxMA==&amp;scene=124#wechat_redirect" target="_blank" title="公众号"><i class="fab fa-weixin"></i></a><a class="social-icon" href="mailto:dekviw233@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87"><span class="toc-number">1.</span> <span class="toc-text">下载图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E5%9F%9F%E5%90%8D"><span class="toc-number">2.</span> <span class="toc-text">替换域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%A0%91%E7%8A%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">生成树状目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E9%93%BE%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">提取链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/5be3b61961d6/" title="如何在本地项目中使用不同Git账号推送代码"><img src="https://eeimg.yilancn.top/i/2025/08/30/cb3kgr.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在本地项目中使用不同Git账号推送代码"/></a><div class="content"><a class="title" href="/posts/5be3b61961d6/" title="如何在本地项目中使用不同Git账号推送代码">如何在本地项目中使用不同Git账号推送代码</a><time datetime="2025-08-29T23:19:16.000Z" title="发表 2025-08-30 07:19:16">2025-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/fd54b507ebc7/" title="无需数据库使用docker搭建moontv视频站"><img src="https://eeimg.yilancn.top/i/2025/08/27/m2hdjr.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无需数据库使用docker搭建moontv视频站"/></a><div class="content"><a class="title" href="/posts/fd54b507ebc7/" title="无需数据库使用docker搭建moontv视频站">无需数据库使用docker搭建moontv视频站</a><time datetime="2025-08-27T04:55:51.000Z" title="发表 2025-08-27 12:55:51">2025-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/99812e2f114a/" title="打印机购买"><img src="https://eeimg.yilancn.top/i/2025/06/05/cf6g27.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="打印机购买"/></a><div class="content"><a class="title" href="/posts/99812e2f114a/" title="打印机购买">打印机购买</a><time datetime="2025-06-04T23:48:46.000Z" title="发表 2025-06-05 07:48:46">2025-06-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f267c785a343/" title="网盘资源电报频道监控"><img src="https://eeimg.yilancn.top/i/2025/06/04/w95vju.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网盘资源电报频道监控"/></a><div class="content"><a class="title" href="/posts/f267c785a343/" title="网盘资源电报频道监控">网盘资源电报频道监控</a><time datetime="2025-06-04T11:41:35.000Z" title="发表 2025-06-04 19:41:35">2025-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8d8b97fa1b26/" title="放弃OneNav,使用Curor写了一个书签导航系统"><img src="https://eeimg.yilancn.top/i/2025/04/20/hcr7jx.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="放弃OneNav,使用Curor写了一个书签导航系统"/></a><div class="content"><a class="title" href="/posts/8d8b97fa1b26/" title="放弃OneNav,使用Curor写了一个书签导航系统">放弃OneNav,使用Curor写了一个书签导航系统</a><time datetime="2025-04-20T02:01:56.000Z" title="发表 2025-04-20 10:01:56">2025-04-20</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0a165e"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 以蓝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.umd.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script><script async src="/js/diytitle.js"></script><script defer src="/js/footertime.js"></script><script src="/js/wp.js"></script><script src="/js/denlong.js"></script><script src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'GT-PH3F9WT', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

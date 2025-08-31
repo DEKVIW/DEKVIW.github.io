@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>安装AdguardHome | 以蓝博客</title><meta name="keywords" content="docker,n3540"><meta name="author" content="以蓝"><meta name="copyright" content="以蓝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、前言原本自建AdguardHomeDNS服务是想解决域名跳转江苏反诈问题的，但是搭建好后发现AdguardHome的DNS域名重定向功能不能解决江苏反诈的劫持。看来想解决江苏反诈跳转，只能走申诉渠道了。下面就讲下docker搭建流程，会给出两种搭建方案，一种是在云服务器vps上，一种是n3540小主机。 2、准备工作vps搭建的话，安装好docker和docker-compose。 小主机搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装AdguardHome">
+<meta property="og:url" content="https://yilancn.top/posts/2b08fe5057c6/index.html">
+<meta property="og:site_name" content="以蓝博客">
+<meta property="og:description" content="1、前言原本自建AdguardHomeDNS服务是想解决域名跳转江苏反诈问题的，但是搭建好后发现AdguardHome的DNS域名重定向功能不能解决江苏反诈的劫持。看来想解决江苏反诈跳转，只能走申诉渠道了。下面就讲下docker搭建流程，会给出两种搭建方案，一种是在云服务器vps上，一种是n3540小主机。 2、准备工作vps搭建的话，安装好docker和docker-compose。 小主机搭建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eeimg.yilancn.top/i/2024/09/01/nzmx4r.webp">
+<meta property="article:published_time" content="2024-09-01T10:19:34.000Z">
+<meta property="article:modified_time" content="2024-09-01T12:19:34.000Z">
+<meta property="article:author" content="以蓝">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="n3540">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eeimg.yilancn.top/i/2024/09/01/nzmx4r.webp"><link rel="shortcut icon" href="/img/fav1.png"><link rel="canonical" href="https://yilancn.top/posts/2b08fe5057c6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.1.1/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GT-PH3F9WT"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-PH3F9WT');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安装AdguardHome',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-01 20:19:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/img/fontawesome-free/css/all.min.css"><!-- 左侧灯笼组--><div class="deng-box-left"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">新</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-left1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">年</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- 右侧灯笼组--><div class="deng-box-right"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">快</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-right1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">乐</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="centered"><div class="blob-1"></div><div class="blob-2"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ava.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">以蓝博客</a></span><div id="he-plugin-simple"></div><div id="none_space"></div><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">安装AdguardHome</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表</span><time class="post-meta-date-created" datetime="2024-09-01T10:19:34.000Z" title="发表 2024-09-01 18:19:34">2024-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2024-09-01T12:19:34.000Z" title="更新 2024-09-01 20:19:34">2024-09-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h2><p>原本自建AdguardHomeDNS服务是想解决域名跳转江苏反诈问题的，但是搭建好后发现AdguardHome的DNS域名重定向功能不能解决江苏反诈的劫持。看来想解决江苏反诈跳转，只能走申诉渠道了。下面就讲下docker搭建流程，会给出两种搭建方案，一种是在云服务器vps上，一种是n3540小主机。</p>
+<h2 id="2、准备工作"><a href="#2、准备工作" class="headerlink" title="2、准备工作"></a>2、准备工作</h2><p>vps搭建的话，安装好docker和docker-compose。</p>
+<p>小主机搭建的话，同样安装好docker和docker-compose。</p>
+<p>建议先看文末的参考资料，推荐<a target="_blank" rel="noopener" href="https://blog.dlc.ink/archives/ad-set">AdGuard Home 自建 DNS 防污染、去广告教程，优化增强设置教程</a></p>
+<p><strong>注意点：涉及到拉取镜像，所以网络问题自行解决，或者自己找下国内镜像源，以免拉取失败或者缓慢。</strong></p>
+<h2 id="3、搭建流程"><a href="#3、搭建流程" class="headerlink" title="3、搭建流程"></a>3、搭建流程</h2><p>新建一个目录，在这个目录下新建docker-compose.yml文件，把以下代码复制进去。执行<code>docker-compose up -d</code>命令。然后浏览器输入IP:3000就能访问配置后台。</p>
+<p>VPS的docker-compose.yml文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.9&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">adguardhome:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">adguard/adguardhome:latest</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">adguardhome</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">53</span><span class="string">:53/tcp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">53</span><span class="string">:53/udp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">3000</span><span class="string">:3000/tcp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">443</span><span class="string">:443/tcp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">443</span><span class="string">:443/udp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">80</span><span class="string">:80/tcp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">853</span><span class="string">:853/tcp</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./workdir:/opt/adguardhome/work</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./confdir:/opt/adguardhome/conf</span></span><br></pre></td></tr></table></figure>
+<p>局域网小主机的docker-compose.yml文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.9&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">adguardhome:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">adguard/adguardhome:latest</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">adguardhome</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">53</span><span class="string">:53/tcp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">53</span><span class="string">:53/udp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">3000</span><span class="string">:3000/tcp</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./workdir:/opt/adguardhome/work</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./confdir:/opt/adguardhome/conf</span></span><br></pre></td></tr></table></figure>
+<p>端口说明：</p>
+<ul>
+<li><code>-p 53:53/tcp -p 53:53/udp</code>: plain DNS.</li>
+<li><code>-p 67:67/udp -p 68:68/tcp -p 68:68/udp</code>: 如果您打算将 AdGuard Home 用作 DHCP 服务器，请添加。</li>
+<li><code>-p 80:80/tcp -p 443:443/tcp -p 443:443/udp -p 3000:3000/tcp</code>: 如果您要使用 AdGuard Home 的管理面板，并将 AdGuard Home 作为 [HTTPS/DNS-over-HTTPS] 服务器运行，请添加。</li>
+<li><code>-p 853:853/tcp</code>: 如果您打算将 AdGuard Home 作为 [DNS-over-TLS]服务器运行，请添加。</li>
+<li><code>-p 784:784/udp -p 853:853/udp -p 8853:8853/udp</code>: 如果您打算将 AdGuard Home 作为 DNS-over-QUIC 服务器运行，请添加。您只能留下其中的一两个。</li>
+<li><code>-p 5443:5443/tcp -p 5443:5443/udp</code>: 如果您打算将 AdGuard Home 作为 [DNSCrypt]服务器运行，请添加。</li>
+</ul>
+<p>以上docker-compose.yml文件中端口开放的设置可以根据端口说明，自行添加或删除端口。</p>
+<p>从端口说明可以看出，局域网使用仅需要开放53和3000端口即可。</p>
+<h3 id="3-1、开始安装"><a href="#3-1、开始安装" class="headerlink" title="3.1、开始安装"></a>3.1、开始安装</h3><p>以下配置是基于局域网小主机的docker-compose.yml。</p>
+<p>由于局域网小主机的docker-compose.yml文件未配置80端口，所以把网页管理界面默认80监听接口改为3000。如果这里不改，安装完成后会无法访问。其他就根据提示，默认下一步来完成安装。</p>
+<p><img src="https://eeimg.yilancn.top/i/2024/09/01/h353eh.webp" alt="端口配置"></p>
+<h3 id="3-2、开始配置"><a href="#3-2、开始配置" class="headerlink" title="3.2、开始配置"></a>3.2、开始配置</h3><ul>
+<li>DNS设置上游服务器，勾选并行请求或者负载均衡。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tls://dot.pub</span><br><span class="line">https://doh.pub/dns-query</span><br><span class="line">tls://dns.alidns.com</span><br><span class="line">https://dns.alidns.com/dns-query</span><br><span class="line">https://doh.360.cn</span><br><span class="line">tls://dot.360.cn</span><br><span class="line">tls://dns.google</span><br><span class="line">https://dns.google/dns-query</span><br><span class="line">tls://dns11.quad9.net</span><br><span class="line">https://dns11.quad9.net/dns-query</span><br></pre></td></tr></table></figure>
+<p><img src="https://eeimg.yilancn.top/i/2024/09/01/had945.webp" alt="上游服务设置"></p>
+<ul>
+<li>Bootstrap DNS 服务器设置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">211.137.96.205</span><br><span class="line">119.6.6.6</span><br><span class="line">8.8.8.8</span><br><span class="line">8.8.4.4</span><br><span class="line">9.9.9.11</span><br><span class="line">149.112.112.11</span><br></pre></td></tr></table></figure>
+<p><img src="https://eeimg.yilancn.top/i/2024/09/01/hbys5e.webp" alt="Bootstrap DNS 服务器设置"></p>
+<p>完成后，点击测试上游，没问题再点击应用</p>
+<ul>
+<li>DNS 服务配置</li>
+</ul>
+<p>速度限制：0；</p>
+<p><img src="https://eeimg.yilancn.top/i/2024/09/01/hdfff7.webp" alt="DNS服务配置"></p>
+<h3 id="3-3、添加黑名单"><a href="#3-3、添加黑名单" class="headerlink" title="3.3、添加黑名单"></a>3.3、添加黑名单</h3><p><img src="https://eeimg.yilancn.top/i/2024/09/01/hgwizg.webp" alt="添加黑名单"></p>
+<p>下面给出我的配置规则地址</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://easylist-downloads.adblockplus.org/easylist.txt">EasyList</a></li>
+<li><a target="_blank" rel="noopener" href="https://easylist-downloads.adblockplus.org/easylistchina.txt">EasyList China</a></li>
+<li><a target="_blank" rel="noopener" href="https://easylist-downloads.adblockplus.org/easyprivacy.txt">EasyPrivacy</a></li>
+<li><a target="_blank" rel="noopener" href="https://anti-ad.net/easylist.txt">Anti-AD</a></li>
+<li><a target="_blank" rel="noopener" href="https://gist.githubusercontent.com/Ewpratten/a25ae63a7200c02c850fede2f32453cf/raw/b9318009399b99e822515d388b8458557d828c37/hosts-yt-ads">YouTube-去广告</a></li>
+</ol>
+<p>其他规则地址：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/217heidai/adblockfilters?tab=readme-ov-file">GitHub - 217heidai/adblockfilters: 适用于AdGuard的去广告合并规则，每8个小时更新一次。</a></p>
+<p><strong>推荐一些优秀且具有屏蔽广告、防止追踪等功能的列表：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt">乘风广告过滤规则</a> </li>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt">乘风视频广告过滤</a></li>
+<li><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts">大圣净化内置列表</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/DivineEngine/AdGuardFilter">神机规则AdGuardFilter</a> </li>
+</ul>
+<h3 id="3-4、如何使用"><a href="#3-4、如何使用" class="headerlink" title="3.4、如何使用"></a>3.4、如何使用</h3><p>到设置向导里面查看各个设备改dns的教程。</p>
+<p><img src="https://eeimg.yilancn.top/i/2024/09/01/i9x8eh.webp" alt="使用教程"></p>
+<p><img src="https://eeimg.yilancn.top/i/2024/09/01/icljg8.webp" alt="使用仪表盘界面"></p>
+<p>注意：直接用来上网设备的ip段要和部署adguardhome的ip段相同，即只能在局域网使用。</p>
+<p>例如：部署adguardhome的设备ip为192.168.8.100，那么上网设备如你的win电脑、mac、手机等的ip必须为192.168.8.？。？可以是0-255的任一数字。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/juniortree/p/18335404">iStore实现 SmartDNS + AdGuard Home IP优选+广告屏蔽</a></p>
+<p><a target="_blank" rel="noopener" href="https://yanghaixiong.com/blog/skills/303/">Adguardhome 配置、优化教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.dlc.ink/archives/ad-set">AdGuard Home 自建 DNS 防污染、去广告教程，优化增强设置教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-4090928-1-1.html">来吧，AdGuardHome去广告和DNS正确姿势</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hbgs/p/16363803.html">docker-compose 部署adguardhome</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.wilxx.com/archives/116">VPS自建AdGuard Home，使用Nginx反代并仅允许指定IP访问</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.moraxyc.com/post/1bcb932a/">避免DNS污染！我的DNS解决方案—AdGuard Home - Moraxyc’s Rhapsody</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangluoanquan111/article/details/136727396">轻松实现全屋去广告与追踪，AdGuard Home助力更安全浏览体验</a></p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>安装AdguardHome</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://yilancn.top/posts/2b08fe5057c6/">https://yilancn.top/posts/2b08fe5057c6/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>以蓝</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2024-09-01</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-09-01</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/docker/">docker</a><a class="post-meta__tags" href="/tags/n3540/">n3540</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/228f43f81645/"><img class="prev-cover" src="https://eeimg.yilancn.top/i/2024/09/05/fqzzo8.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hexo部署至云服务器</div></div></a></div><div class="next-post pull-right"><a href="/posts/2340651921be/"><img class="next-cover" src="https://eeimg.yilancn.top/i/2024/09/01/10k30u2.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">解决硬盘无法弹出</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/76e477cd9193/" title="wordpress做内网穿透"><img class="cover" src="https://eeimg.yilancn.top/i/2024/09/01/pet8yj.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-01</div><div class="title">wordpress做内网穿透</div></div></a></div><div><a href="/posts/d6db0fb593ca/" title="在n3540小主机上使用docker安装苹果cms"><img class="cover" src="https://eeimg.yilancn.top/i/2024/09/08/y0v1kh.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-12</div><div class="title">在n3540小主机上使用docker安装苹果cms</div></div></a></div><div><a href="/posts/9f4705d44904/" title="使用Docker搭建Charles激活工具"><img class="cover" src="https://eeimg.yilancn.top/i/2025/01/03/z111uz.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-03</div><div class="title">使用Docker搭建Charles激活工具</div></div></a></div><div><a href="/posts/60f3ca17534e/" title="docker镜像源"><img class="cover" src="https://eeimg.yilancn.top/i/2024/10/04/yv38h0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-01</div><div class="title">docker镜像源</div></div></a></div><div><a href="/posts/9c37da498c36/" title="docker项目汇总"><img class="cover" src="https://eeimg.yilancn.top/i/2024/11/25/123vwfi.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-17</div><div class="title">docker项目汇总</div></div></a></div><div><a href="/posts/96597ca29842/" title="玩客云安装bt"><img class="cover" src="https://eeimg.yilancn.top/i/2022/12/10/sm5wir-3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-12</div><div class="title">玩客云安装bt</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ava.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">以蓝</div><div class="author-info__description">孜孜以求，青出于蓝</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.yilan.uk"><i class="fab fa-github"></i><span>YiLan's Blog</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DEKVIW" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/zhi-xiao-tian-xia-shi-16" target="_blank" title="知乎"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzg5Njg3NTAxMA==&amp;scene=124#wechat_redirect" target="_blank" title="公众号"><i class="fab fa-weixin"></i></a><a class="social-icon" href="mailto:dekviw233@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">1、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">2、准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">3、搭建流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E3%80%81%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、开始安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E3%80%81%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、开始配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E3%80%81%E6%B7%BB%E5%8A%A0%E9%BB%91%E5%90%8D%E5%8D%95"><span class="toc-number">3.3.</span> <span class="toc-text">3.3、添加黑名单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4%E3%80%81%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-number">3.4.</span> <span class="toc-text">3.4、如何使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/5be3b61961d6/" title="如何在本地项目中使用不同Git账号推送代码"><img src="https://eeimg.yilancn.top/i/2025/08/30/cb3kgr.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在本地项目中使用不同Git账号推送代码"/></a><div class="content"><a class="title" href="/posts/5be3b61961d6/" title="如何在本地项目中使用不同Git账号推送代码">如何在本地项目中使用不同Git账号推送代码</a><time datetime="2025-08-29T23:19:16.000Z" title="发表 2025-08-30 07:19:16">2025-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/fd54b507ebc7/" title="无需数据库使用docker搭建moontv视频站"><img src="https://eeimg.yilancn.top/i/2025/08/27/m2hdjr.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无需数据库使用docker搭建moontv视频站"/></a><div class="content"><a class="title" href="/posts/fd54b507ebc7/" title="无需数据库使用docker搭建moontv视频站">无需数据库使用docker搭建moontv视频站</a><time datetime="2025-08-27T04:55:51.000Z" title="发表 2025-08-27 12:55:51">2025-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/99812e2f114a/" title="打印机购买"><img src="https://eeimg.yilancn.top/i/2025/06/05/cf6g27.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="打印机购买"/></a><div class="content"><a class="title" href="/posts/99812e2f114a/" title="打印机购买">打印机购买</a><time datetime="2025-06-04T23:48:46.000Z" title="发表 2025-06-05 07:48:46">2025-06-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f267c785a343/" title="网盘资源电报频道监控"><img src="https://eeimg.yilancn.top/i/2025/06/04/w95vju.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网盘资源电报频道监控"/></a><div class="content"><a class="title" href="/posts/f267c785a343/" title="网盘资源电报频道监控">网盘资源电报频道监控</a><time datetime="2025-06-04T11:41:35.000Z" title="发表 2025-06-04 19:41:35">2025-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8d8b97fa1b26/" title="放弃OneNav,使用Curor写了一个书签导航系统"><img src="https://eeimg.yilancn.top/i/2025/04/20/hcr7jx.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="放弃OneNav,使用Curor写了一个书签导航系统"/></a><div class="content"><a class="title" href="/posts/8d8b97fa1b26/" title="放弃OneNav,使用Curor写了一个书签导航系统">放弃OneNav,使用Curor写了一个书签导航系统</a><time datetime="2025-04-20T02:01:56.000Z" title="发表 2025-04-20 10:01:56">2025-04-20</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0a165e"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 以蓝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.umd.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script><script async src="/js/diytitle.js"></script><script defer src="/js/footertime.js"></script><script src="/js/wp.js"></script><script src="/js/denlong.js"></script><script src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'GT-PH3F9WT', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
