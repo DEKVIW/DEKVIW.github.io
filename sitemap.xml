@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/comment/index.html</loc>
+    <loc>https://yilancn.top/categories/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/categories/index.html</loc>
+    <loc>https://yilancn.top/comment/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -1027,14 +1027,14 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/docker/</loc>
+    <loc>https://yilancn.top/tags/Calibre/</loc>
     <lastmod>2025-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/Calibre/</loc>
+    <loc>https://yilancn.top/tags/docker/</loc>
     <lastmod>2025-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1216,14 +1216,14 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/google/</loc>
+    <loc>https://yilancn.top/tags/office365/</loc>
     <lastmod>2025-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/office365/</loc>
+    <loc>https://yilancn.top/tags/google/</loc>
     <lastmod>2025-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
