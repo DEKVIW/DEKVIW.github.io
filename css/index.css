@@ -7051,10 +7051,38 @@ body.read-mode #rightside-config-show {
 }
 
 /* 阅读模式下的代码块样式修复 */
+.read-mode #article-container figure.highlight {
+  background: #f7f7f7 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* 处理table结构的代码块 */
+.read-mode #article-container figure.highlight table {
+  background: #f7f7f7 !important;
+  width: 100% !important;
+  border: none !important;
+  border-collapse: collapse !important;
+}
+
+.read-mode #article-container figure.highlight table tbody,
+.read-mode #article-container figure.highlight table tr,
+.read-mode #article-container figure.highlight table td {
+  background: #f7f7f7 !important;
+  border: none !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+
+/* 处理直接pre结构的代码块 */
 .read-mode #article-container pre,
 .read-mode #article-container .highlight:not(.js-file-line-container) {
   background: #f7f7f7 !important;
   color: #333 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 
 .read-mode #article-container pre *,

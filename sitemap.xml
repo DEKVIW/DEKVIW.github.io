@@ -1015,13 +1015,6 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/hexo/</loc>
-    <lastmod>2025-09-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yilancn.top/tags/%E6%B8%B8%E6%88%8F/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1030,6 +1023,13 @@
   
   <url>
     <loc>https://yilancn.top/tags/%E7%BD%91%E7%9B%98/</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yilancn.top/tags/hexo/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1085,13 +1085,6 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/%E6%96%87%E4%BB%B6%E5%A4%87%E4%BB%BD/</loc>
-    <lastmod>2025-09-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yilancn.top/tags/Win10/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1100,6 +1093,13 @@
   
   <url>
     <loc>https://yilancn.top/tags/bat/</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yilancn.top/tags/%E6%96%87%E4%BB%B6%E5%A4%87%E4%BB%BD/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1162,14 +1162,14 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/%E5%AE%9D%E5%A1%94%E5%BB%BA%E7%AB%99/</loc>
+    <loc>https://yilancn.top/tags/%E8%BD%AF%E4%BB%B6/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/%E8%BD%AF%E4%BB%B6/</loc>
+    <loc>https://yilancn.top/tags/%E5%AE%9D%E5%A1%94%E5%BB%BA%E7%AB%99/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1297,14 +1297,14 @@
 
   
   <url>
-    <loc>https://yilancn.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://yilancn.top/categories/%E7%BD%91%E7%9B%98%E8%B5%84%E6%BA%90/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yilancn.top/categories/%E7%BD%91%E7%9B%98%E8%B5%84%E6%BA%90/</loc>
+    <loc>https://yilancn.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
