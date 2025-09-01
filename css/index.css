@@ -6070,19 +6070,6 @@ blockquote.pullquote.right {
   --exit-btn-hover: #8d8d8d;
   --pseudo-hover: none;
 }
-[data-theme='dark'] .read-mode {
-  --font-color: rgba(255,255,255,0.7);
-  --readmode-light-color: #0d0d0d;
-  --white: rgba(255,255,255,0.9);
-  --light-grey: rgba(255,255,255,0.7);
-  --gray: rgba(255,255,255,0.7);
-  --hr-border: rgba(255,255,255,0.5);
-  --hr-before-color: rgba(255,255,255,0.7);
-  --highlight-bg: #171717;
-  --exit-btn-bg: #1f1f1f;
-  --exit-btn-color: rgba(255,255,255,0.9);
-  --exit-btn-hover: #525252;
-}
 .read-mode {
   background: var(--readmode-light-color);
 }
@@ -6949,12 +6936,204 @@ body {
   font-family: "Times New Roman", "LXGW WenKai", sans-serif;
 }
 
-h1 { font-size: 1.5rem; }   
-h2 { font-size: 1.4rem; }     
-h3 { font-size: 1.25rem; }   
-h4 { font-size: 1.2rem; }  
-h5 { font-size: 1.024rem !important; } 
-h6 { font-size: 0.85rem !important; }  
+h1 {
+  font-size: 1.5rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 1.2rem;
+}
+h5 {
+  font-size: 1.024rem !important;
+}
+h6 {
+  font-size: 0.85rem !important;
+}
+
+/* ==================== 阅读模式修复 ==================== */
+/* 修复阅读模式自动变暗黑模式的问题 - 最高优先级 */
+body.read-mode,
+html[data-theme="dark"] body.read-mode,
+html[data-theme="light"] body.read-mode {
+  background: #ffffff !important;
+  color: #333333 !important;
+  background-color: #ffffff !important;
+}
+
+/* 强制阅读模式使用亮色主题，不受data-theme影响 - 最高优先级 */
+[data-theme="dark"] .read-mode,
+[data-theme="light"] .read-mode,
+html[data-theme="dark"] .read-mode,
+html[data-theme="light"] .read-mode {
+  background: #ffffff !important;
+  color: #333333 !important;
+  background-color: #ffffff !important;
+}
+
+/* 阅读模式下的文字颜色修复 */
+.read-mode #article-container {
+  color: #333 !important;
+}
+
+.read-mode #article-container h1,
+.read-mode #article-container h2,
+.read-mode #article-container h3,
+.read-mode #article-container h4,
+.read-mode #article-container h5,
+.read-mode #article-container h6 {
+  color: #333 !important;
+}
+
+.read-mode #article-container p {
+  color: #333 !important;
+}
+
+/* 修复加载动画问题 - 强制停止所有旋转动画 */
+.read-mode .fa-spin,
+.read-mode .fa-spinner,
+.read-mode i.fa-spin,
+.read-mode i.fa-spinner,
+body.read-mode .fa-spin,
+body.read-mode .fa-spinner,
+body.read-mode i.fa-spin,
+body.read-mode i.fa-spinner {
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+}
+
+/* 完全隐藏右侧按钮区域 */
+.read-mode #rightside,
+body.read-mode #rightside,
+.read-mode #rightside-config-hide,
+body.read-mode #rightside-config-hide,
+.read-mode #rightside-config-show,
+body.read-mode #rightside-config-show {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+/* 确保退出按钮可见且样式正确 */
+.read-mode .exit-readmode {
+  position: fixed !important;
+  top: 30px !important;
+  right: 30px !important;
+  z-index: 1000 !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+  background: #c0c0c0 !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: background 0.3s !important;
+}
+
+.read-mode .exit-readmode:hover {
+  background: #999 !important;
+}
+
+/* 移动端退出按钮位置调整 */
+@media (max-width: 768px) {
+  .read-mode .exit-readmode {
+    top: auto !important;
+    bottom: 30px !important;
+  }
+}
+
+/* 阅读模式下的代码块样式修复 */
+.read-mode #article-container pre,
+.read-mode #article-container .highlight:not(.js-file-line-container) {
+  background: #f7f7f7 !important;
+  color: #333 !important;
+}
+
+.read-mode #article-container pre *,
+.read-mode #article-container .highlight:not(.js-file-line-container) * {
+  color: #333 !important;
+}
+
+/* 阅读模式下的链接样式 */
+.read-mode #article-container a {
+  color: #1e88e5 !important;
+}
+
+.read-mode #article-container a:hover {
+  color: #0d47a1 !important;
+}
+
+/* 阅读模式下的引用块样式 */
+.read-mode #article-container blockquote {
+  border-left: 4px solid #ddd !important;
+  background-color: #f9f9f9 !important;
+  color: #333 !important;
+}
+
+/* 阅读模式下的表格样式 */
+.read-mode #article-container table {
+  border: 1px solid #ddd !important;
+  background: #fff !important;
+}
+
+.read-mode #article-container th,
+.read-mode #article-container td {
+  border: 1px solid #ddd !important;
+  background: #fff !important;
+  color: #333 !important;
+}
+
+/* 全局强制重置 - 最后执行，优先级最高 */
+body.read-mode * {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+body.read-mode {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #333333 !important;
+}
+
+/* 强制覆盖所有可能的暗色主题样式 */
+html[data-theme="dark"] body.read-mode,
+html[data-theme="dark"] body.read-mode *:not(.exit-readmode) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #333333 !important;
+}
+
+/* 确保文章内容区域正确显示 */
+body.read-mode #article-container,
+body.read-mode #article-container * {
+  background: #ffffff !important;
+  color: #333333 !important;
+}
+
+/* 特殊元素处理 */
+body.read-mode #article-container a {
+  color: #1e88e5 !important;
+}
+
+body.read-mode #article-container code {
+  background: #f5f5f5 !important;
+  color: #333333 !important;
+}
+
+body.read-mode #article-container pre {
+  background: #f8f8f8 !important;
+  color: #333333 !important;
+}
+
+/* ==================== 阅读模式修复结束 ==================== */
 
 .search-dialog {
   position: fixed;
