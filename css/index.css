@@ -6955,6 +6955,28 @@ h6 {
   font-size: 0.85rem !important;
 }
 
+/* ==================== GitHub Badge Tooltip 修复 ==================== */
+/*悬停显示徽标提示语*/
+a.github-badge:hover:before {
+  position: fixed;
+  width: fit-content;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 10%;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 100;
+  content: attr(data-title);
+  font-size: 20px;
+  color: #fff;
+  padding: 10px;
+  background-color: var(--text-bg-hover);
+}
+[data-theme="dark"] a.github-badge:hover:before {
+  background-color: rgba(18, 18, 18, 0.8);
+}
+
 /* ==================== 阅读模式修复 ==================== */
 /* 修复阅读模式自动变暗黑模式的问题 - 最高优先级 */
 body.read-mode,
