@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/img/fontawesome-free/metadata/sponsors.json</loc>
-    
-    <lastmod>2025-09-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yilancn.top/img/fontawesome-free/metadata/icons.json</loc>
     
     <lastmod>2025-09-06</lastmod>
@@ -48,6 +39,15 @@
   
   <url>
     <loc>https://yilancn.top/img/fontawesome-free/metadata/shims.json</loc>
+    
+    <lastmod>2025-09-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yilancn.top/img/fontawesome-free/metadata/sponsors.json</loc>
     
     <lastmod>2025-09-06</lastmod>
     
@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/categories/index.html</loc>
+    <loc>https://yilancn.top/about/index.html</loc>
     
     <lastmod>2025-09-06</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/about/index.html</loc>
+    <loc>https://yilancn.top/categories/index.html</loc>
     
     <lastmod>2025-09-06</lastmod>
     
@@ -1080,14 +1080,14 @@
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/SNI/</loc>
+    <loc>https://yilancn.top/tags/%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2025-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yilancn.top/tags/%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://yilancn.top/tags/SNI/</loc>
     <lastmod>2025-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
