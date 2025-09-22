@@ -254,7 +254,7 @@ gtag('config', 'GT-PH3F9WT');
 </ul>
 </li>
 </ol>
-<h3 id="拉取镜像运行"><a href="#拉取镜像运行" class="headerlink" title="拉取镜像运行"></a>拉取镜像运行</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nav:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">yilan666/booknav-nav:1.9.5</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nav</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8988:80&quot;</span> <span class="comment"># Nginx端口</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data:/data</span> <span class="comment"># 数据目录</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/backups:/app/app/backups</span> <span class="comment"># 备份目录</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/uploads:/app/app/static/uploads</span> <span class="comment"># 上传文件目录</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./config/nginx:/etc/nginx/http.d</span> <span class="comment"># Nginx配置</span></span><br><span class="line">    <span class="attr">env_file:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.env</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DATABASE_URL=sqlite:////data/app.db</span> </span><br></pre></td></tr></table></figure>
+<h3 id="拉取镜像运行"><a href="#拉取镜像运行" class="headerlink" title="拉取镜像运行"></a>拉取镜像运行</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nav:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">yilan666/booknav-nav:1.9.6</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nav</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8988:80&quot;</span> <span class="comment"># Nginx端口</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data:/data</span> <span class="comment"># 数据目录</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/backups:/app/app/backups</span> <span class="comment"># 备份目录</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/uploads:/app/app/static/uploads</span> <span class="comment"># 上传文件目录</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./config/nginx:/etc/nginx/http.d</span> <span class="comment"># Nginx配置</span></span><br><span class="line">    <span class="attr">env_file:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.env</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DATABASE_URL=sqlite:////data/app.db</span> </span><br></pre></td></tr></table></figure>
 <p>docker-compose.yml文件同级目录下创建.env文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 基本配置</span><br><span class="line">SECRET_KEY=</span><br><span class="line">FLASK_ENV=production</span><br><span class="line">DATABASE_URL=sqlite:////data/app.db</span><br><span class="line"></span><br><span class="line"># 管理员设置</span><br><span class="line">ADMIN_USERNAME=admin</span><br><span class="line">ADMIN_EMAIL=admin@example.com</span><br><span class="line">ADMIN_PASSWORD=admin123</span><br><span class="line"></span><br><span class="line"># 其他配置</span><br><span class="line">INVITATION_CODE_LENGTH=8</span><br></pre></td></tr></table></figure>
 <p>SECRET_KEY=</p>
@@ -310,7 +310,7 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
       setTimeout(runFn,0)
       return
     } 
-    getScript('https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js').then(runFn)
+    getScript('https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js').then(runFn)
   }
 
   if ('Twikoo' === 'Twikoo' || !false) {
@@ -356,7 +356,23 @@ document.addEventListener('pjax:send', function () {
 
   //reset readmode
   const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+  if ($bodyClassList.contains('read-mode')) {
+    $bodyClassList.remove('read-mode')
+    // 清理阅读模式的完整状态
+    document.body.style.background = ""
+    document.body.style.color = ""
+    // 移除退出按钮
+    const existingBtn = document.querySelector(".exit-readmode")
+    if (existingBtn) {
+      existingBtn.remove()
+    }
+    // 恢复右侧按钮
+    const rightside = document.getElementById("rightside")
+    if (rightside) {
+      rightside.style.display = ""
+      rightside.style.visibility = ""
+    }
+  }
 
   typeof disqusjs === 'object' && disqusjs.destroy()
 })

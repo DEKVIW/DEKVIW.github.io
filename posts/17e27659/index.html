@@ -296,7 +296,7 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
       setTimeout(runFn,0)
       return
     } 
-    getScript('https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js').then(runFn)
+    getScript('https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js').then(runFn)
   }
 
   if ('Twikoo' === 'Twikoo' || !false) {
@@ -342,7 +342,23 @@ document.addEventListener('pjax:send', function () {
 
   //reset readmode
   const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+  if ($bodyClassList.contains('read-mode')) {
+    $bodyClassList.remove('read-mode')
+    // 清理阅读模式的完整状态
+    document.body.style.background = ""
+    document.body.style.color = ""
+    // 移除退出按钮
+    const existingBtn = document.querySelector(".exit-readmode")
+    if (existingBtn) {
+      existingBtn.remove()
+    }
+    // 恢复右侧按钮
+    const rightside = document.getElementById("rightside")
+    if (rightside) {
+      rightside.style.display = ""
+      rightside.style.visibility = ""
+    }
+  }
 
   typeof disqusjs === 'object' && disqusjs.destroy()
 })
