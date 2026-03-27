@@ -282,8 +282,6 @@ gtag('config', 'GT-PH3F9WT');
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cd /www/server/nginx/conf.d</span><br><span class="line"></span><br><span class="line">step ca certificate \</span><br><span class="line">  jellyfin.lan \</span><br><span class="line">  lan-fullchain.pem \</span><br><span class="line">  lan-privkey.pem \</span><br><span class="line">  --not-after=87600h \</span><br><span class="line">  --san jellyfin.lan \</span><br><span class="line">  --san owu.lan \</span><br><span class="line">  --san qb.lan \</span><br><span class="line">  --san 192.168.8.5 \</span><br><span class="line">  --san localhost</span><br></pre></td></tr></table></figure>
 <p>需要输入密码</p>
 <p><img src="https://eeimg.yilancn.top/i/2026/03/27/sxmskx.webp" alt="申请成功"></p>
-<p>iPnTgHzR5k&amp;Z9rU</p>
-<p>admin@lan.local</p>
 <h3 id="客户端信任CA"><a href="#客户端信任CA" class="headerlink" title="客户端信任CA"></a>客户端信任CA</h3><p>把 Step-CA 的根证书（通常是 <code>/root/.step/certs/root_ca.crt</code>）导出到每台设备（电脑、手机），然后导入“受信任的根证书颁发机构”。</p>
 <ul>
 <li>win端导入</li>
