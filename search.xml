@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Codex下载安装与配置</title>
+      <link href="/posts/810a635d/"/>
+      <url>/posts/810a635d/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Codex 是一款强大的本地 AI 客户端工具，支持通过自定义 API 接入各种大模型。本文记录怎么下载安装和配置codex，以及如何通过 2API 项目实现免费账号额度汇聚，从而更高效、稳定地使用 GPT 等模型。</p><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>方式一：微软商店直接下载</p><p>方式二： 如果微软商店无法正常下载，可使用以下方法：</p><ul><li>在微软商店搜索到 Codex，右键点击其卡片，复制下载链接。</li></ul><p><img src="https://eeimg.yilancn.top/i/2026/04/03/povs47.webp" alt="获取下载链接"></p><ul><li><p>打开：<a href="https://store.rg-adguard.net/">https://store.rg-adguard.net/</a></p></li><li><p>将复制的下载链接粘贴到输入框，点击获取下载地址。</p></li></ul><p><img src="https://eeimg.yilancn.top/i/2026/04/03/pnoxva.webp" alt="获取微软商店外下载地址"></p><ul><li>下载完成后，双击安装包，按照提示完成安装。</li></ul><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>打开 Codex 后会进入登录界面，支持两种登录方式：</p><ul><li><strong>账号密码登录</strong></li><li><strong>API Key 登录</strong></li></ul><h3 id="账号密码登陆"><a href="#账号密码登陆" class="headerlink" title="账号密码登陆"></a>账号密码登陆</h3><p><img src="https://eeimg.yilancn.top/i/2026/04/04/xvl9q5.webp" alt="登陆界面"></p><p><strong>账号密码登录</strong> 适合给 GPT 充值的用户（充值用户通常也有官方密钥）。<br><strong>免费账号不建议直接用账号密码登录</strong>，因为免费账号的额度非常有限，提问几次可能就用完了。</p><p><strong>免费用户推荐使用 API Key 登录</strong>，这样可以把多个免费账号的额度汇聚到一个 Key 使用。</p><p>目前常用 2API 项目实现额度汇聚，例如：</p><ul><li>CPA（CliproxyAPI）</li><li>Sub2API</li></ul><p>下图示例使用了 <strong>Sub2API</strong> 项目，导入了 30 个 GPT 免费账号，实现循环使用。当一个账号额度用完后，会自动切换到其他账号继续使用。</p><p><img src="https://eeimg.yilancn.top/i/2026/04/04/xyz1rh.webp" alt="sub2api示例"></p><h3 id="API密钥登陆"><a href="#API密钥登陆" class="headerlink" title="API密钥登陆"></a>API密钥登陆</h3><p><strong>先部署 2API 项目</strong>，部署完成后会获得 <code>base_url</code> 和 <code>key</code></p><ul><li>创建配置文件</li></ul><p>找到以下目录（将“你的用户名”换成你电脑的实际用户名）：</p><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\你的用户名\.codex</span><br></pre></td></tr></table></figure><p>在该目录下新建 <code>config.toml</code> 文件（如果已存在则直接编辑），复制以下内容：</p><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">model_provider</span> = <span class="string">&quot;custom&quot;</span></span><br><span class="line"><span class="attr">model</span> = <span class="string">&quot;gpt-5.4&quot;</span></span><br><span class="line"><span class="attr">review_model</span> = <span class="string">&quot;gpt-5.4&quot;</span></span><br><span class="line"><span class="attr">model_reasoning_effort</span> = <span class="string">&quot;xhigh&quot;</span></span><br><span class="line"><span class="attr">preferred_auth_method</span> = <span class="string">&quot;apikey&quot;</span></span><br><span class="line"><span class="attr">web_search</span> = <span class="string">&quot;live&quot;</span></span><br><span class="line"><span class="attr">disable_response_storage</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[model_providers.custom]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;custom&quot;</span></span><br><span class="line"><span class="attr">base_url</span> = <span class="string">&quot;http://192.168.8.117:8181/v1&quot;</span>   <span class="comment"># ← 需要修改成你自己部署的 2API 地址</span></span><br><span class="line"><span class="attr">requires_openai_auth</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">wire_api</span> = <span class="string">&quot;responses&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[windows]</span></span><br><span class="line"><span class="attr">sandbox</span> = <span class="string">&quot;unelevated&quot;</span></span><br></pre></td></tr></table></figure><ul><li>获取key</li></ul><p><img src="https://eeimg.yilancn.top/i/2026/04/04/yx3usq.webp" alt="获取sub2api的key"></p><ul><li>然后回到登陆界面就能正常登陆和使用了</li></ul><p><img src="https://eeimg.yilancn.top/i/2026/04/04/yysdtw.webp" alt="使用"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+            <tag> Codex </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>不再记IP地址,利用Nginx+DNS打造优雅的本地服务访问方案</title>
       <link href="/posts/173189c0/"/>
       <url>/posts/173189c0/</url>
