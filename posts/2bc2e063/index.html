@@ -157,7 +157,6 @@ gtag('config', 'GT-PH3F9WT');
 <h3 id="curl-失败"><a href="#curl-失败" class="headerlink" title="curl 失败"></a>curl 失败</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -I https://www.google.com</span><br></pre></td></tr></table></figure>
 <p> Could not resolve host</p>
 <p> 结论：<strong>DNS + 外网链路全部失效</strong></p>
-<hr>
 <h2 id="排查DNS层"><a href="#排查DNS层" class="headerlink" title="排查DNS层"></a>排查DNS层</h2><h3 id="检查-DNS-进程"><a href="#检查-DNS-进程" class="headerlink" title="检查 DNS 进程"></a>检查 DNS 进程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps w | grep chinadns-ng</span><br></pre></td></tr></table></figure>
 <p>结果：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chinadns-ng 正常运行 ✔</span><br></pre></td></tr></table></figure>
@@ -166,7 +165,6 @@ gtag('config', 'GT-PH3F9WT');
 <li>DNS代理进程没有挂</li>
 <li>问题不在“没启动”</li>
 </ul>
-<hr>
 <h3 id="检查-53-端口"><a href="#检查-53-端口" class="headerlink" title="检查 53 端口"></a>检查 53 端口</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -lnp | grep :53</span><br></pre></td></tr></table></figure>
 <p>结果：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnsmasq 正常监听 ✔</span><br></pre></td></tr></table></figure>
@@ -175,28 +173,23 @@ gtag('config', 'GT-PH3F9WT');
 <li>本地 DNS 服务存在</li>
 <li>但“不等于能解析”</li>
 </ul>
-<hr>
 <h3 id="关键异常发现"><a href="#关键异常发现" class="headerlink" title="关键异常发现"></a>关键异常发现</h3><p>❗ 发现 8.8.8.8 被占用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8.8.8.8:53 → xray</span><br></pre></td></tr></table></figure>
 <p>根因之一：Xray <strong>错误接管 DNS 请求</strong></p>
-<hr>
 <p>结果：</p>
 <ul>
 <li>DNS 请求被“代理劫持”</li>
 <li>但没有正确返回解析结果</li>
 <li>DNS 全崩</li>
 </ul>
-<hr>
 <h2 id="核心验证"><a href="#核心验证" class="headerlink" title="核心验证"></a>核心验证</h2><h3 id="外网-DNS-测试失败"><a href="#外网-DNS-测试失败" class="headerlink" title="外网 DNS 测试失败"></a>外网 DNS 测试失败</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup google.com 8.8.8.8 → timeout</span><br></pre></td></tr></table></figure>
 <p>说明UDP 53 出口不通 / 被拦截 / 被代理劫持</p>
-<hr>
 <h3 id="本地-DNS-无结果"><a href="#本地-DNS-无结果" class="headerlink" title="本地 DNS 无结果"></a>本地 DNS 无结果</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup google.com 127.0.0.1 → No answer</span><br></pre></td></tr></table></figure>
 <p>说明：</p>
 <ul>
 <li>chinadns-ng 收到请求</li>
 <li>但 upstream（上游DNS）失败</li>
 </ul>
-<hr>
 <h3 id="curl-失败-1"><a href="#curl-失败-1" class="headerlink" title="curl 失败"></a>curl 失败</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not resolve host</span><br></pre></td></tr></table></figure>
 <p>说明：系统 DNS 完全不可用</p>
 <h2 id="真正根因"><a href="#真正根因" class="headerlink" title="真正根因"></a>真正根因</h2><p>问题不是单点，而是<strong>链式故障</strong>：</p>
@@ -206,7 +199,6 @@ gtag('config', 'GT-PH3F9WT');
 </ul>
 <h3 id="根因2：DNS链路断裂"><a href="#根因2：DNS链路断裂" class="headerlink" title="根因2：DNS链路断裂"></a>根因2：DNS链路断裂</h3><p>路径错误变成：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnsmasq → xray → 无返回</span><br></pre></td></tr></table></figure>
-<hr>
 <h3 id="根因3：Passwall-DNS未正确接管"><a href="#根因3：Passwall-DNS未正确接管" class="headerlink" title="根因3：Passwall DNS未正确接管"></a>根因3：Passwall DNS未正确接管</h3><p>Passwall</p>
 <ul>
 <li>DNS 没走预期链路</li>
@@ -233,15 +225,10 @@ gtag('config', 'GT-PH3F9WT');
 </ul>
 <p>本质：<strong>恢复“本地DNS服务”</strong></p>
 <h2 id="以后如何快速判断（很重要）"><a href="#以后如何快速判断（很重要）" class="headerlink" title="以后如何快速判断（很重要）"></a>以后如何快速判断（很重要）</h2><p>以后遇到类似问题，按这个顺序查</p>
-<hr>
 <h3 id="①-DNS是否存活"><a href="#①-DNS是否存活" class="headerlink" title="① DNS是否存活"></a>① DNS是否存活</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup google.com 127.0.0.1</span><br></pre></td></tr></table></figure>
-<hr>
 <h3 id="②-外网DNS是否通"><a href="#②-外网DNS是否通" class="headerlink" title="② 外网DNS是否通"></a>② 外网DNS是否通</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup google.com 8.8.8.8</span><br></pre></td></tr></table></figure>
-<hr>
 <h3 id="③-53端口是谁"><a href="#③-53端口是谁" class="headerlink" title="③ 53端口是谁"></a>③ 53端口是谁</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -lnp | grep :53</span><br></pre></td></tr></table></figure>
-<hr>
 <h3 id="④-代理是否干扰DNS"><a href="#④-代理是否干扰DNS" class="headerlink" title="④ 代理是否干扰DNS"></a>④ 代理是否干扰DNS</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logread | grep dns</span><br></pre></td></tr></table></figure>
-<hr>
 <h2 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h2><p>你这次属于典型 OpenWrt 三层问题：</p>
 <div class="table-container">
 <table>
