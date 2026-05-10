@@ -1,0 +1,489 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>PPT模板批量处理与发布流程 | 以蓝博客</title><meta name="keywords" content="PPT"><meta name="author" content="以蓝"><meta name="copyright" content="以蓝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言最近用 Codex 对之前收集的几万个 PPT 模板做了一次系统整理，并将其上线成了一个可访问的 Web 网站： 网站地址：https:&#x2F;&#x2F;ppt.pkll.de 这篇文章主要记录整个过程：从原始 PPT 模板的清洗与整理，到本地环境验证、数据库入库沉淀，再到最终部署到 VPS 并正式上线。  原始模板“收干净” 扫描批次目录，把所有可处理来源统一识别出来。 把压缩包展开，得到真正可处理的 P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PPT模板批量处理与发布流程">
+<meta property="og:url" content="https://yilancn.top/posts/6157feab/index.html">
+<meta property="og:site_name" content="以蓝博客">
+<meta property="og:description" content="前言最近用 Codex 对之前收集的几万个 PPT 模板做了一次系统整理，并将其上线成了一个可访问的 Web 网站： 网站地址：https:&#x2F;&#x2F;ppt.pkll.de 这篇文章主要记录整个过程：从原始 PPT 模板的清洗与整理，到本地环境验证、数据库入库沉淀，再到最终部署到 VPS 并正式上线。  原始模板“收干净” 扫描批次目录，把所有可处理来源统一识别出来。 把压缩包展开，得到真正可处理的 P">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eeimg.yilancn.top/i/2026/05/10/ircja5.webp">
+<meta property="article:published_time" content="2026-05-10T03:33:10.000Z">
+<meta property="article:modified_time" content="2026-05-10T03:33:10.000Z">
+<meta property="article:author" content="以蓝">
+<meta property="article:tag" content="PPT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eeimg.yilancn.top/i/2026/05/10/ircja5.webp"><link rel="shortcut icon" href="/img/fav1.png"><link rel="canonical" href="https://yilancn.top/posts/6157feab/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.1.1/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GT-PH3F9WT"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-PH3F9WT');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PPT模板批量处理与发布流程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-05-10 11:33:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/img/fontawesome-free/css/all.min.css"><!-- 左侧灯笼组--><div class="deng-box-left"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">新</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-left1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">年</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- 右侧灯笼组--><div class="deng-box-right"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">快</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><div class="deng-box-right1"><div class="deng"><div class="xian"></div><div class="deng-a"><div class="deng-b"><div class="deng-t">乐</div></div></div><div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div></div></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="centered"><div class="blob-1"></div><div class="blob-2"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ava.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">53</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">以蓝博客</a></span><div id="he-plugin-simple"></div><div id="none_space"></div><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/" target="_self"><i class="fa-fw fas fa-home faa-tada"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt faa-tada"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child" style="right:-100px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/" target="_self"><i class="fa-fw fas fa-file-archive faa-tada"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/" target="_self"><i class="fa-fw fas fa-tag faa-tada"></i><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/" target="_self"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://nav.yilancn.top/" target="_blank"><i class="fa-fw fas fa-location-arrow _blank"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/" target="_self"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="https://status.ylll.de/" target="_blank"><i class="fa-fw fas fa-compass faa-tada"></i><span> 服务监控</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/wallpaper/" target="_self"><i class="fa-fw fas fa-image faa-tada"></i><span> 壁纸</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/" target="_blank"><i class="fa-fw fas fa-film faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">PPT模板批量处理与发布流程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表</span><time class="post-meta-date-created" datetime="2026-05-10T03:33:10.000Z" title="发表 2026-05-10 11:33:10">2026-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2026-05-10T03:33:10.000Z" title="更新 2026-05-10 11:33:10">2026-05-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近用 Codex 对之前收集的几万个 PPT 模板做了一次系统整理，并将其上线成了一个可访问的 Web 网站：</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://ppt.pkll.de">https://ppt.pkll.de</a></p>
+<p>这篇文章主要记录整个过程：从原始 PPT 模板的清洗与整理，到本地环境验证、数据库入库沉淀，再到最终部署到 VPS 并正式上线。</p>
+<p><img src="https://eeimg.yilancn.top/i/2026/05/10/iq0rdo.webp" alt="上线步骤"></p>
+<h2 id="原始模板“收干净”"><a href="#原始模板“收干净”" class="headerlink" title="原始模板“收干净”"></a>原始模板“收干净”</h2><ol>
+<li>扫描批次目录，把所有可处理来源统一识别出来。</li>
+<li>把压缩包展开，得到真正可处理的 PPT 文件。</li>
+<li>把直存的 PPT、PPTX 和解压后的文件统一归并到同一条后续链路。</li>
+<li>按页数、比例等规则提前筛掉明显不合格的模板。</li>
+<li>生成这一批模板的清单，记录哪些文件保留、哪些被过滤、哪些检查失败。</li>
+</ol>
+<h2 id="模板从文件变成结构化内容"><a href="#模板从文件变成结构化内容" class="headerlink" title="模板从文件变成结构化内容"></a>模板从文件变成结构化内容</h2><ol>
+<li>提取 PPT 的基础信息，比如文件名、页数、部分页面文本。</li>
+<li>基于内容和规则生成统一标题，避免原始文件名过乱、过长或者无意义。</li>
+<li>生成分类和标签，让模板后面可以进入分类页、标签页和搜索结果。</li>
+<li>输出模板描述、说明文案等内容字段，供详情页直接使用。</li>
+<li>生成标准命名方案，为后续归档、打包和上传做准备。</li>
+<li>生成这一批模板的主清单，后面的渲染、上传、入库都围绕这份清单继续处理。</li>
+</ol>
+<h2 id="生成稳定的预览图资产"><a href="#生成稳定的预览图资产" class="headerlink" title="生成稳定的预览图资产"></a>生成稳定的预览图资产</h2><ol>
+<li>调用 PowerPoint 把每个模板的页面导出成图片。</li>
+<li>同时生成站点需要的封面图、缩略图和整套页面预览图。</li>
+<li>把这些图片统一写入稳定资产目录，而不是只放在一次性临时目录里。</li>
+<li>为每个模板建立固定的图片目录结构，后面本地站点、图床发布和数据库都复用这套结构。</li>
+<li>记录渲染结果，明确哪些模板导出成功，哪些失败，失败到第几页。</li>
+</ol>
+<h2 id="整理下载资源并生成分享链接"><a href="#整理下载资源并生成分享链接" class="headerlink" title="整理下载资源并生成分享链接"></a>整理下载资源并生成分享链接</h2><ol>
+<li>根据前面生成的标准命名方案，整理出规范的模板副本。</li>
+<li>把副本重新打包，形成最终对外分发的压缩文件。</li>
+<li>把这些压缩文件上传到网盘。</li>
+<li>为不同网盘生成最终分享链接和提取信息。</li>
+<li>把网盘返回的分享结果回填到模板主记录中。</li>
+</ol>
+<h2 id="本地前台验证"><a href="#本地前台验证" class="headerlink" title="本地前台验证"></a>本地前台验证</h2><p>这一阶段非常关键，因为前面几步虽然都完成了，但它们大多还是“数据层面正确”。</p>
+<ol>
+<li>读取前面已经整理好的模板发布清单。</li>
+<li>把模板内容写入本地站点的数据目录。</li>
+<li>把稳定图片资产同步到本地站点的图片目录。</li>
+<li>对已经删除或不再保留的模板做本地裁剪，避免旧页面残留。</li>
+<li>在本地把首页、分类页、详情页和下载入口完整走一遍。</li>
+<li>检查是否存在缺图、缺链接、残留模板、零页模板等问题。</li>
+</ol>
+<h2 id="把图片和模板正式沉淀进数据库"><a href="#把图片和模板正式沉淀进数据库" class="headerlink" title="把图片和模板正式沉淀进数据库"></a>把图片和模板正式沉淀进数据库</h2><p>本地前台验证通过之后，下一步不是继续改页面，而是把这批模板正式沉淀成线上可查询的数据。</p>
+<p>这一阶段实际上做了两层工作。</p>
+<h3 id="第一层：发布正式图片地址"><a href="#第一层：发布正式图片地址" class="headerlink" title="第一层：发布正式图片地址"></a>第一层：发布正式图片地址</h3><p>虽然本地已经有稳定图片资产了，但线上前台不能长期依赖本地文件路径。</p>
+<p>所以需要把图片发布到正式图床，并为每一张图拿到可访问的线上地址。</p>
+<p>这里处理的不是一两张图，而是整批模板的：</p>
+<ol>
+<li>缩略图</li>
+<li>封面图</li>
+<li>全部页面预览图</li>
+</ol>
+<h3 id="第二层：把模板数据导入数据库"><a href="#第二层：把模板数据导入数据库" class="headerlink" title="第二层：把模板数据导入数据库"></a>第二层：把模板数据导入数据库</h3><p>有了正式图片地址之后，这一批模板的数据就可以正式入库了。</p>
+<p>入库时会把模板拆成几类结构化数据：</p>
+<ol>
+<li>模板主表，存标题、分类、描述、页数、slug 等基础信息。</li>
+<li>标签表，存模板对应的搜索标签、主题标签和分类标签。</li>
+<li>下载表，存不同网盘的下载信息和分享链接。</li>
+<li>图片资产表，存每张图片对应的模板、类型、页码和正式访问地址。</li>
+</ol>
+<h2 id="把数据库和前台正式同步到-VPS"><a href="#把数据库和前台正式同步到-VPS" class="headerlink" title="把数据库和前台正式同步到 VPS"></a>把数据库和前台正式同步到 VPS</h2><p>前面的步骤都完成之后，才进入真正意义上的线上发布。</p>
+<p>这一阶段不是单纯把前台代码传到服务器，而是把“已经在本地验证通过的数据和站点能力”整体迁移到远程环境。</p>
+<p>它至少包含两块内容。</p>
+<h3 id="1-先同步数据库"><a href="#1-先同步数据库" class="headerlink" title="1. 先同步数据库"></a>1. 先同步数据库</h3><p>线上站点最终依赖数据库查询模板，所以远程 VPS 上必须先有一份和本地一致的数据库内容。</p>
+<p>这里做的事情包括：</p>
+<ol>
+<li>检查本地数据库是否完整。</li>
+<li>检查远程数据库环境是否可用、结构是否兼容。</li>
+<li>把本地已经验证通过的模板、标签、下载、图片资产同步到远端数据库。</li>
+<li>在同步完成后核对数量，确认远程库和本地库一致。</li>
+</ol>
+<p>这一步的目的不是“把 SQL 文件传上去”，而是保证线上读到的数据和本地验证过的数据是同一份。</p>
+<h3 id="2-再同步前台并切到数据库模式"><a href="#2-再同步前台并切到数据库模式" class="headerlink" title="2. 再同步前台并切到数据库模式"></a>2. 再同步前台并切到数据库模式</h3><p>如果前台代码本身有变动，还需要把前台源码同步到 VPS。</p>
+<p>同步之后，远程站点要完成三件事：</p>
+<ol>
+<li>使用新的前台代码构建站点。</li>
+<li>使用远程数据库作为正式数据源。</li>
+<li>使用图床和网盘链接作为正式外部资源。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>PPT模板批量处理与发布流程</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://yilancn.top/posts/6157feab/">https://yilancn.top/posts/6157feab/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>以蓝</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2026-05-10</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2026-05-10</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PPT/">PPT</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2bc2e063/"><img class="next-cover" src="https://eeimg.yilancn.top/i/2026/04/21/xc043u.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">OpenWrt Passwall频繁切换节点后外网DNS失效的排查与修复</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ava.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">以蓝</div><div class="author-info__description">孜孜以求，青出于蓝</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">53</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.yilan.uk"><i class="fab fa-github"></i><span>YiLan's Blog</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DEKVIW" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/zhi-xiao-tian-xia-shi-16" target="_blank" title="知乎"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzg5Njg3NTAxMA==&amp;scene=124#wechat_redirect" target="_blank" title="公众号"><i class="fab fa-weixin"></i></a><a class="social-icon" href="mailto:dekviw233@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E6%A8%A1%E6%9D%BF%E2%80%9C%E6%94%B6%E5%B9%B2%E5%87%80%E2%80%9D"><span class="toc-number">2.</span> <span class="toc-text">原始模板“收干净”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E4%BB%8E%E6%96%87%E4%BB%B6%E5%8F%98%E6%88%90%E7%BB%93%E6%9E%84%E5%8C%96%E5%86%85%E5%AE%B9"><span class="toc-number">3.</span> <span class="toc-text">模板从文件变成结构化内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E7%A8%B3%E5%AE%9A%E7%9A%84%E9%A2%84%E8%A7%88%E5%9B%BE%E8%B5%84%E4%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">生成稳定的预览图资产</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E7%90%86%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90%E5%B9%B6%E7%94%9F%E6%88%90%E5%88%86%E4%BA%AB%E9%93%BE%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">整理下载资源并生成分享链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%89%8D%E5%8F%B0%E9%AA%8C%E8%AF%81"><span class="toc-number">6.</span> <span class="toc-text">本地前台验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E5%9B%BE%E7%89%87%E5%92%8C%E6%A8%A1%E6%9D%BF%E6%AD%A3%E5%BC%8F%E6%B2%89%E6%B7%80%E8%BF%9B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">7.</span> <span class="toc-text">把图片和模板正式沉淀进数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82%EF%BC%9A%E5%8F%91%E5%B8%83%E6%AD%A3%E5%BC%8F%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80"><span class="toc-number">7.1.</span> <span class="toc-text">第一层：发布正式图片地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%EF%BC%9A%E6%8A%8A%E6%A8%A1%E6%9D%BF%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">7.2.</span> <span class="toc-text">第二层：把模板数据导入数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%89%8D%E5%8F%B0%E6%AD%A3%E5%BC%8F%E5%90%8C%E6%AD%A5%E5%88%B0-VPS"><span class="toc-number">8.</span> <span class="toc-text">把数据库和前台正式同步到 VPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%88%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">8.1.</span> <span class="toc-text">1. 先同步数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%86%8D%E5%90%8C%E6%AD%A5%E5%89%8D%E5%8F%B0%E5%B9%B6%E5%88%87%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F"><span class="toc-number">8.2.</span> <span class="toc-text">2. 再同步前台并切到数据库模式</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/6157feab/" title="PPT模板批量处理与发布流程"><img src="https://eeimg.yilancn.top/i/2026/05/10/ircja5.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PPT模板批量处理与发布流程"/></a><div class="content"><a class="title" href="/posts/6157feab/" title="PPT模板批量处理与发布流程">PPT模板批量处理与发布流程</a><time datetime="2026-05-10T03:33:10.000Z" title="发表 2026-05-10 11:33:10">2026-05-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2bc2e063/" title="OpenWrt Passwall频繁切换节点后外网DNS失效的排查与修复"><img src="https://eeimg.yilancn.top/i/2026/04/21/xc043u.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenWrt Passwall频繁切换节点后外网DNS失效的排查与修复"/></a><div class="content"><a class="title" href="/posts/2bc2e063/" title="OpenWrt Passwall频繁切换节点后外网DNS失效的排查与修复">OpenWrt Passwall频繁切换节点后外网DNS失效的排查与修复</a><time datetime="2026-04-21T12:16:15.000Z" title="发表 2026-04-21 20:16:15">2026-04-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/810a635d/" title="Codex下载安装与配置"><img src="https://eeimg.yilancn.top/i/2026/04/04/zoitol.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codex下载安装与配置"/></a><div class="content"><a class="title" href="/posts/810a635d/" title="Codex下载安装与配置">Codex下载安装与配置</a><time datetime="2026-04-04T13:39:53.000Z" title="发表 2026-04-04 21:39:53">2026-04-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/173189c0/" title="不再记IP地址,利用Nginx+DNS打造优雅的本地服务访问方案"><img src="https://eeimg.yilancn.top/i/2026/03/27/xkt1tl.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="不再记IP地址,利用Nginx+DNS打造优雅的本地服务访问方案"/></a><div class="content"><a class="title" href="/posts/173189c0/" title="不再记IP地址,利用Nginx+DNS打造优雅的本地服务访问方案">不再记IP地址,利用Nginx+DNS打造优雅的本地服务访问方案</a><time datetime="2026-03-27T12:13:39.000Z" title="发表 2026-03-27 20:13:39">2026-03-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/7c2db78f/" title="使用Docker安装cliproxyapi"><img src="https://eeimg.yilancn.top/i/2026/03/12/1114m1b.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Docker安装cliproxyapi"/></a><div class="content"><a class="title" href="/posts/7c2db78f/" title="使用Docker安装cliproxyapi">使用Docker安装cliproxyapi</a><time datetime="2026-03-12T14:40:02.000Z" title="发表 2026-03-12 22:40:02">2026-03-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0a165e"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2026 By 以蓝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.27/fancybox.umd.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.yilancn.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.yilancn.top/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script><script async src="/js/diytitle.js"></script><script defer src="/js/footertime.js"></script><script src="/js/wp.js"></script><script src="/js/denlong.js"></script><script src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  if ($bodyClassList.contains('read-mode')) {
+    $bodyClassList.remove('read-mode')
+    // 清理阅读模式的完整状态
+    document.body.style.background = ""
+    document.body.style.color = ""
+    // 移除退出按钮
+    const existingBtn = document.querySelector(".exit-readmode")
+    if (existingBtn) {
+      existingBtn.remove()
+    }
+    // 恢复右侧按钮
+    const rightside = document.getElementById("rightside")
+    if (rightside) {
+      rightside.style.display = ""
+      rightside.style.visibility = ""
+    }
+  }
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'GT-PH3F9WT', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.3.0" title=""><img src="/img/badges/hexo.svg" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="/img/badges/butterfly.svg" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于Vercel" title=""><img src="/img/badges/vercel.svg" alt=""/></a><a class="github-badge" target="_blank" href="https://bandwagonhost.com/" style="margin-inline:5px" data-title="VPS服务由搬瓦工提供" title=""><img src="/img/badges/bandwagonhost.svg" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="/img/badges/github.svg" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="/img/badges/copyright.svg" alt=""/></a></p>';
+    // console.log('已挂载butterfly_footer_beautify') // 已注释调试日志
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><!-- hexo injector body_end end --></body></html>
