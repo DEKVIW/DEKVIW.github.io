@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://blog.yilanapp.com/img/fontawesome-free/metadata/icons.json</loc>
-    
-    <lastmod>2026-07-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.yilanapp.com/img/fontawesome-free/metadata/shims.json</loc>
     
     <lastmod>2026-07-15</lastmod>
@@ -48,6 +39,15 @@
   
   <url>
     <loc>https://blog.yilanapp.com/img/fontawesome-free/metadata/sponsors.json</loc>
+    
+    <lastmod>2026-07-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yilanapp.com/img/fontawesome-free/metadata/icons.json</loc>
     
     <lastmod>2026-07-15</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://blog.yilanapp.com/comment/index.html</loc>
+    <loc>https://blog.yilanapp.com/categories/index.html</loc>
     
     <lastmod>2026-07-15</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://blog.yilanapp.com/categories/index.html</loc>
+    <loc>https://blog.yilanapp.com/comment/index.html</loc>
     
     <lastmod>2026-07-15</lastmod>
     
