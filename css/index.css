@@ -7033,11 +7033,6 @@ button#go-up:hover #percent {
   }
 }
 
-@font-face {
-  font-family: "LXGW WenKai"; /* 这里去掉 -Bold，统一用这个名字 */
-  font-display: swap;
-  src: url("/fonts/LXGWWenKai-Bold.ttf") format("truetype");
-}
 
 @font-face {
   font-family: "Maple Mono"; /* 这里去掉 -Regular */
