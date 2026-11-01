@@ -2740,8 +2740,12 @@ figure.highlight pre .javascript .function {
   }
   .recent-posts .recent-post-item .recent-post-content .recent-post-info .recent-post-meta .article-meta-wrap {
     display: block !important;
+    height: 3.4em;
+    max-height: 3.4em;
+    line-height: 1.7 !important;
+    -webkit-line-clamp: unset !important;
     white-space: normal !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     -o-text-overflow: clip;
     text-overflow: clip;
     word-break: break-word;
