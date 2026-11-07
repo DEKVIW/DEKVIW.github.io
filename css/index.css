@@ -6678,9 +6678,13 @@ svg.icon {
   transform: translateX(-50%);
   white-space: nowrap; /* 禁止换行 */
 }
-/* 横向排布子菜单 */
+/* PC 端下拉菜单使用垂直列表，避免子菜单项目过多时横向撑宽导航栏 */
 #nav .menus_items .menus_item .menus_item_child li {
-  display: inline-block;
+  display: block;
+}
+
+#nav .menus_items .menus_item .menus_item_child {
+  right: 0 !important;
 }
 /* 圆角隐藏 */
 ul.menus_item_child {
