@@ -918,6 +918,14 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const lazyloadImg = () => {
+    if (typeof LazyLoad !== 'function') {
+      document.querySelectorAll('img[data-lazy-src]').forEach(img => {
+        img.src = img.dataset.lazySrc
+        img.removeAttribute('data-lazy-src')
+      })
+      return
+    }
+
     window.lazyLoadInstance = new LazyLoad({
       elements_selector: "img",
       threshold: 0,

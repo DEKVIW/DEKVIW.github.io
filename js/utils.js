@@ -230,6 +230,8 @@ const btf = {
     }
 
     if (service === 'fancybox') {
+      if (typeof Fancybox === 'undefined' || typeof Fancybox.bind !== 'function') return
+
       ele.forEach(i => {
         if (i.parentNode.tagName !== 'A') {
           const dataSrc = i.dataset.lazySrc || i.src
